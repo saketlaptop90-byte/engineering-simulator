@@ -1,0 +1,1 @@
+$content = Get-Content -Raw "C:\Users\Saket\OneDrive\Desktop\engineering-simulator\machines\cell_phase5.js"; $match = [regex]::Match($content, "(?s)const modelsList = \[(.*?)\];"); if ($match.Success) { $arr = $match.Groups[1].Value -split "," | ForEach-Object { $_.Trim().Trim("`"") } | Where-Object { $_ -ne "" }; $arr[1241..1340] -join "`n" }

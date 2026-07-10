@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering Universe | Interactive 3D Simulators</title>
+  <meta name="description" content="Explore god-tier interactive 3D models and simulators across Engineering, Biology, Space, and Physics. Disassemble, animate, and learn." />
+  <meta name="keywords" content="3D simulator, engineering, biology, space, physics, interactive models, STEM, learning" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://engineering-universe.web.app/" />
+  
+  <meta property="og:title" content="Engineering Universe | God-Tier 3D Simulators" />
+  <meta property="og:description" content="Disassemble, animate, and explore God-tier 3D models across Engineering, Biology, Space, and Physics." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://engineering-universe.web.app/" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { 
+      --bg-base: #030712;
+      --bg-panel: rgba(17, 24, 39, 0.6);
+      --bg-panel-hover: rgba(31, 41, 55, 0.8);
+      --accent: #00e5ff;
+      --accent-2: #8b5cf6;
+      --accent-3: #ec4899;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body, html { 
+      background-color: var(--bg-base); 
+      font-family: 'Outfit', sans-serif; 
+      color: var(--text-main); 
+      overflow-x: hidden; 
+      scroll-behavior: smooth; 
+    }
+    
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+      background: var(--bg-base);
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.4;
+      animation: float 20s infinite ease-in-out alternate;
+    }
+    .orb-1 { width: 500px; height: 500px; background: var(--accent-2); top: -100px; left: -100px; animation-delay: 0s; }
+    .orb-2 { width: 400px; height: 400px; background: var(--accent); bottom: 10%; right: -50px; animation-delay: -5s; }
+    .orb-3 { width: 600px; height: 600px; background: var(--accent-3); top: 40%; left: 30%; animation-delay: -10s; opacity: 0.2;}
+    
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(100px, 50px) scale(1.1); }
+    }
+
+    /* Navbar Glassmorphism */
+    nav { 
+      position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; 
+      padding: 1rem 3rem; background: rgba(3, 7, 18, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border); z-index: 1000; 
+    }
+    .logo { font-size: 1.6rem; font-weight: 800; font-family: 'Space Grotesk', sans-serif; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px;}
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 1.05rem; transition: all 0.3s; }
+    .nav-links a:hover { color: var(--text-main); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+
+    /* Hero Section */
+    .hero { 
+      padding: 8rem 2rem 4rem; 
+      text-align: center; 
+      display: flex; flex-direction: column; align-items: center; 
+      max-width: 1000px; margin: 0 auto;
+    }
+    h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 900; line-height: 1.1; letter-spacing: -2px; margin-bottom: 1rem; }
+    h1 span.gradient-text { 
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3)); 
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+      background-size: 200% auto; animation: gradientText 5s linear infinite;
+    }
+    @keyframes gradientText { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+    
+    .hero p { font-size: 1.3rem; color: var(--text-muted); margin-bottom: 3rem; font-weight: 300; }
+
+    /* Large Search Bar */
+    .search-wrapper { position: relative; width: 100%; max-width: 700px; margin: 0 auto 3rem; z-index: 100;}
+    .search-wrapper input {
+      width: 100%; padding: 1.4rem 2rem 1.4rem 4rem; 
+      border-radius: 100px; border: 1px solid var(--glass-border); 
+      background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      color: white; font-size: 1.2rem; outline: none; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .search-wrapper input:focus {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--accent);
+      box-shadow: 0 0 40px rgba(0, 229, 255, 0.2);
+    }
+    .search-icon { position: absolute; left: 1.5rem; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: var(--text-muted); }
+    .search-suggestions { 
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;
+    }
+    .search-suggestions span { color: var(--text-muted); font-size: 0.9rem; margin-right: 0.5rem; }
+    .search-pill { 
+      padding: 6px 16px; border-radius: 50px; background: rgba(255,255,255,0.05); 
+      border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
+    }
+    .search-pill:hover { background: rgba(0,229,255,0.15); border-color: var(--accent); color: var(--accent); }
+
+    /* Sections */
+    .section-container { max-width: 1400px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; }
+    .section-title { font-size: 2rem; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+    .section-title i { font-size: 2.2rem; }
+    .view-all { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+    .view-all:hover { text-decoration: underline; }
+
+    /* Horizontal Scroller (Featured, Trending) */
+    .scroller { display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 2rem; snap-type: x mandatory; scrollbar-width: none; }
+    .scroller::-webkit-scrollbar { display: none; }
+    
+    .model-card {
+      min-width: 320px; flex: 0 0 auto; scroll-snap-align: start;
+      background: var(--bg-panel); border: 1px solid var(--glass-border); border-radius: 24px;
+      padding: 1.5rem; position: relative; overflow: hidden; backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;
+      text-decoration: none; color: inherit; display: block;
+    }
+    .model-card:hover { 
+      transform: translateY(-10px); border-color: var(--accent); 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 0 20px rgba(0,229,255,0.05);
+      background: var(--bg-panel-hover);
+    }
+    .model-card-img {
+      width: 100%; height: 180px; border-radius: 16px; background: #000; margin-bottom: 1.2rem;
+      position: relative; overflow: hidden;
+    }
+    .model-card-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: opacity 0.3s; }
+    .model-card:hover .model-card-img img { opacity: 1; }
+    
+    .card-badge { position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(10px); }
+    .badge-trending { background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4); }
+    .badge-featured { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); }
+    .badge-new { background: rgba(0, 229, 255, 0.2); color: #67e8f9; border: 1px solid rgba(0, 229, 255, 0.4); }
+    
+    .card-difficulty { position: absolute; top: 12px; right: 12px; font-size: 0.9rem; }
+
+    .model-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+    .model-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* Category Grid */
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .cat-card {
+      background: var(--bg-panel); border: 1px solid var(--glass-border); border-radius: 20px;
+      padding: 2rem; display: flex; align-items: center; gap: 1.5rem; backdrop-filter: blur(10px);
+      transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: inherit;
+    }
+    .cat-card:hover { transform: scale(1.02); border-color: var(--accent); background: var(--bg-panel-hover); }
+    .cat-icon { font-size: 2.5rem; width: 70px; height: 70px; background: rgba(255,255,255,0.03); border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: inset 0 0 10px rgba(255,255,255,0.05); }
+    .cat-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; }
+    .cat-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* Subcategories */
+    .subcat-grid { display: none; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .subcat-card { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 1rem; border-radius: 12px; font-size: 0.95rem; font-weight: 500; text-align: center; transition: all 0.2s; cursor: pointer; text-decoration: none; color: white;}
+    .subcat-card:hover { background: rgba(0,229,255,0.1); border-color: var(--accent); color: var(--accent); }
+    
+    #breadcrumb { display: none; margin-bottom: 2rem; padding: 10px 20px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 100px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 600; color: var(--text-main); transition: all 0.2s;}
+    #breadcrumb:hover { background: rgba(255,255,255,0.1); }
+
+    /* Auth UI & Buttons */
+    .btn-primary { padding: 10px 20px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border: none; border-radius: 8px; color: #000; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+    .btn-primary:hover { filter: brightness(1.15); box-shadow: 0 0 15px rgba(0, 229, 255, 0.4); }
+    .danger { color: #ef4444; background: transparent; border: none; cursor: pointer; padding: 5px; text-align: left; width: 100%; font-size: 0.95rem; font-weight: 600;}
+    .danger:hover { background: rgba(239, 68, 68, 0.1); border-radius: 4px; }
+    .dropdown { display: none; position: absolute; right: 0; top: 50px; background: rgba(17, 24, 39, 0.95); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 12px; padding: 10px; min-width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); flex-direction: column; gap: 5px; z-index: 1001;}
+    .dropdown.show { display: flex; animation: fadeIn 0.2s ease; }
+    .dropdown a, .dropdown button { color: var(--text-main); text-decoration: none; padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; transition: background 0.2s; display: flex; align-items: center; gap: 10px; border: none; background: transparent; cursor: pointer; text-align: left;}
+    .dropdown a:hover, .dropdown button:hover { background: rgba(255, 255, 255, 0.1); }
+    .user-avatar-btn { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px 10px; border-radius: 20px; transition: background 0.2s; }
+    .user-avatar-btn:hover { background: rgba(255, 255, 255, 0.1); }
+    .user-avatar-btn img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--accent); }
+    .auth-container { position: relative; }
+  </style>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <meta property="og:type" content="website" />
+  <meta name="google-adsense-account" content="ca-pub-7318663619327346">
+</head>
+<body>
+  <!-- visually hidden H1 for SEO -->
+  <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Engineering Universe - Interactive 3D God-Tier Simulators</h1>
+  
+  <nav class="navbar">
+    <div class="logo"><a href="index.html">EngiSim <span>3D</span></a></div>
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="simulator.html">Simulator</a>
+      <a href="community.html">Community</a>
+      <a href="profile.html">My Profile</a>
+    </div>
+    <div class="auth-container" id="auth-wrapper" style="position: relative; margin-left: 20px;"></div>
+  </nav>
+  <script>
+    document.getElementById('hamburger-btn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('nav-links').classList.toggle('mobile-open');
+    });
+    document.addEventListener('click', function(e) {
+      var nav = document.getElementById('nav-links');
+      if (nav && !e.target.closest('nav')) nav.classList.remove('mobile-open');
+    });
+  </script>
+
+  <main class="container">
+  <div class="hero">
+    <h2 style="font-size: 3rem; margin-bottom: 20px;">Explore the Universe of Engineering</h2>
+    <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 40px;">Discover interactive 3D models and simulators across Engineering, Biology, Space, and Physics.</p>
+    <div class="search-bar" style="max-width: 600px; margin: 0 auto;">
+      <input type="text" id="global-search" placeholder="Search for models, domains, or concepts..." style="width: 100%; padding: 15px; border-radius: 30px; border: none; font-size: 1.1rem; padding-left: 20px; outline: none; margin-bottom: 20px;">
+      <div class="search-pills" style="margin-top: 15px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <div class="search-pill" onclick="document.getElementById('global-search').value='Human Heart'; triggerSearch();">Human Heart</div>
+        <div class="search-pill" onclick="document.getElementById('global-search').value='CPU'; triggerSearch();">CPU</div>
+        <div class="search-pill" onclick="document.getElementById('global-search').value='Telescope'; triggerSearch();">Telescope</div>
+      </div>
+    </div>
+    
+    <div style="display: flex; gap: 15px; margin-top: 1rem; justify-content: center; flex-wrap: wrap; z-index: 100; position: relative;">
+      <a href="/downloads/engisim-main-apk.zip" class="btn-primary" style="text-decoration: none;">📱 Main Android App</a>
+      <a href="#" class="btn-primary" style="background: linear-gradient(135deg, #4b5563, #374151); text-decoration: none; cursor: not-allowed;" title="Windows Apps exceed Firebase Free Tier size limits (130MB).">💻 Main Windows App (Offline)</a>
+    </div>
+  </div>
+</main>
+
+  <!-- Trending Section -->
+  <section class="section-container" id="trending-section" style="display: none;">
+    <div class="section-header">
+      <h2 class="section-title"><span style="color: #ff3366;">🔥</span> Trending Models</h2>
+    </div>
+    <div class="scroller" id="trending-scroller">
+      <!-- Dynamically populated from Analytics -->
+    </div>
+  </section>
+
+  <!-- Featured Section -->
+  <section class="section-container">
+    <div class="section-header">
+      <h2 class="section-title"><span>⭐</span> Featured Models</h2>
+      <a href="simulator.html" class="view-all">View All</a>
+    </div>
+    <div class="scroller">
+      
+      <a href="simulator.html?model=jet_engine" class="model-card">
+        <div class="model-card-img">
+          <div class="card-badge badge-featured">Featured</div>
+          <div class="card-difficulty">🔴 Advanced</div>
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=500&q=80" alt="Turbofan">
+        </div>
+        <h3>Turbofan Jet Engine</h3>
+        <p>Disassemble a commercial aviation jet engine and explore the combustion cycle.</p>
+      </a>
+
+      <a href="simulator.html?model=human_heart" class="model-card">
+        <div class="model-card-img">
+          <div class="card-badge badge-trending">Trending</div>
+          <div class="card-difficulty">🟡 Intermediate</div>
+          <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=500&q=80" alt="Heart">
+        </div>
+        <h3>Human Heart Anatomy</h3>
+        <p>Cross-section view of ventricles, valves, and blood flow animations.</p>
+      </a>
+      
+      <a href="simulator.html?model=cpu_architecture" class="model-card">
+        <div class="model-card-img">
+          <div class="card-badge badge-new">New</div>
+          <div class="card-difficulty">🔴 Advanced</div>
+          <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=500&q=80" alt="CPU">
+        </div>
+        <h3>Silicon CPU Architecture</h3>
+        <p>Explore logic gates, ALUs, and cache hierarchy in a modern processor.</p>
+      </a>
+
+      <a href="simulator.html?model=astrophysics_solar_system" class="model-card">
+        <div class="model-card-img">
+          <div class="card-difficulty">🟢 Beginner</div>
+          <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=500&q=80" alt="Solar System">
+        </div>
+        <h3>Solar System Mechanics</h3>
+        <p>Interactive orbital simulation with realistic planetary physics and scaling.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Real Life Models Section -->
+  <section class="section-container">
+    <div class="section-header">
+      <h2 class="section-title"><span>ðŸŒ</span> Real Life Models</h2>
+      <a href="simulator.html?category=real_life_models" class="view-all">View All</a>
+    </div>
+    <div class="scroller">
+      
+      <a href="simulator.html?model=hydrogen_fuel_cell" class="model-card">
+        <div class="model-card-img">
+          <div class="card-badge badge-new">New</div>
+          <div class="card-difficulty">🟡 Intermediate</div>
+          <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=500&q=80" alt="Fuel Cell">
+        </div>
+        <h3>Hydrogen Fuel Cell</h3>
+        <p>Explore the proton exchange membrane and electron flow inside a fuel cell.</p>
+      </a>
+
+      <a href="simulator.html?model=van_de_graaff_generator" class="model-card">
+        <div class="model-card-img">
+          <div class="card-badge badge-trending">Trending</div>
+          <div class="card-difficulty">🟢 Beginner</div>
+          <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=500&q=80" alt="Van de Graaff">
+        </div>
+        <h3>Van de Graaff Generator</h3>
+        <p>Visualize static charge accumulation and the belt system.</p>
+      </a>
+      
+      <a href="simulator.html?model=galvanic_cell" class="model-card">
+        <div class="model-card-img">
+          <div class="card-difficulty">🟡 Intermediate</div>
+          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=500&q=80" alt="Galvanic Cell">
+        </div>
+        <h3>Galvanic Cell (Battery)</h3>
+        <p>See the anode, cathode, and salt bridge of an electrochemical cell.</p>
+      </a>
+
+      <a href="simulator.html?model=electrolysis_chamber" class="model-card">
+        <div class="model-card-img">
+          <div class="card-difficulty">🔴 Advanced</div>
+          <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=500&q=80" alt="Electrolysis">
+        </div>
+        <h3>Electrolysis Chamber</h3>
+        <p>Watch water molecules split into Hydrogen and Oxygen gases.</p>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- Popular Categories (Macro Domains) -->
+  <section class="section-container" id="explore-categories">
+    <div class="section-header">
+      <h2 class="section-title"><span>📚</span> Explore Domains</h2>
+    </div>
+    
+    <div id="breadcrumb-container" style="display: none;">
+      <button id="breadcrumb" onclick="renderDomains()">â† Back to Domains</button>
+    </div>
+
+    <div class="cat-grid" id="portal-grid"></div>
+    <div class="subcat-grid" id="subcat-grid"></div>
+  </section>
+
+  <script type="module" src="./firebase.js"></script>
+  <script type="module" src="machines.js"></script>
+  <script type="module">
+    import { initAuth, getCurrentUser, signInWithGoogle, signInWithMicrosoft, signOutUser } from './auth.js';
+    import { db, collection, getDocs } from './firebase.js';
+    import { MACHINES } from './machines.js';
+    window.ENGISIM_MACHINES = MACHINES;
+    
+    const domains = {
+  "Engineering": {
+    "icon": "ðŸ› ï¸",
+    "desc": "Mechanical, Civil, Aero",
+    "categories": ["mechanical_engineering", "civil_engineering", "aerospace_engineering", "electrical_engineering", "robotics_engineering", "automotive_engineering"]
+  },
+  "Biology & Medical": {
+    "icon": "🧬",
+    "desc": "Anatomy, Cells, Botany",
+    "categories": ["human_anatomy", "cell_biology", "botany", "genetics", "medical_devices"]
+  },
+  "Space & Physics": {
+    "icon": "🚀",
+    "desc": "Astrophysics, Quantum, Tech",
+    "categories": ["astrophysics", "quantum_physics", "spacecraft_engineering", "orbital_mechanics"]
+  },
+  "Technology & IT": {
+    "icon": "💻",
+    "desc": "Computing, Networks, AI",
+    "categories": ["computer_science", "network_engineering", "artificial_intelligence", "data_centers"]
+  },
+  "Earth Sciences": {
+    "icon": "ðŸŒ",
+    "desc": "Geology, Marine, Weather",
+    "categories": ["geology", "meteorology", "marine_engineering", "environmental_engineering"]
+  },
+  "Mathematics": {
+    "icon": "ðŸ“",
+    "desc": "Geometry, Topology",
+    "categories": ["geometry", "topology", "calculus", "algebra"]
+  },
+  "Real Life Science": {
+    "icon": "ðŸŒ",
+    "desc": "Real life physics & chemistry",
+    "categories": ["real_life_models"]
+  },
+  "Elemental Chemistry": {
+    "icon": "🧪",
+    "desc": "Periodic Table & Atoms",
+    "categories": ["hydrogen", "helium", "lithium"]
+  }
+};
+
+    window.triggerSearch = function() {
+      const input = document.getElementById('global-search');
+      input.dispatchEvent(new Event('input'));
+      setTimeout(() => {
+        const e = new KeyboardEvent('keydown', { key: 'Enter' });
+        input.dispatchEvent(e);
+      }, 50);
+    };
+
+    window.renderDomains = () => {
+      const grid = document.getElementById('portal-grid');
+      const subgrid = document.getElementById('subcat-grid');
+      document.getElementById('breadcrumb-container').style.display = 'none';
+      subgrid.style.display = 'none';
+      grid.style.display = 'grid';
+      grid.innerHTML = '';
+      
+      for (const [domain, data] of Object.entries(domains)) {
+        const card = document.createElement('div');
+        card.className = 'cat-card';
+        card.innerHTML = `<div class="cat-icon">${data.icon}</div><div><h3>${domain}</h3><p>${data.desc}</p></div>`;
+        card.onclick = () => renderSubcategories(domain, data.categories);
+        grid.appendChild(card);
+      }
+    }
+
+    function renderSubcategories(domain, categories) {
+      const grid = document.getElementById('portal-grid');
+      const subgrid = document.getElementById('subcat-grid');
+      document.getElementById('breadcrumb-container').style.display = 'block';
+      
+      grid.style.display = 'none';
+      subgrid.style.display = 'grid';
+      subgrid.innerHTML = '';
+      
+      categories.forEach(cat => {
+        const a = document.createElement('a');
+        a.href = `simulator.html?category=${cat}`; 
+        a.className = 'subcat-card';
+        a.innerHTML = cat.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        subgrid.appendChild(a);
+      });
+    }
+
+    document.getElementById('global-search').addEventListener('input', (e) => {
+      const val = e.target.value.toLowerCase();
+      if (!val) return window.renderDomains();
+      
+      const grid = document.getElementById('portal-grid');
+      const subgrid = document.getElementById('subcat-grid');
+      document.getElementById('breadcrumb-container').style.display = 'none';
+      
+      grid.style.display = 'none';
+      subgrid.style.display = 'grid';
+      subgrid.innerHTML = '';
+      
+      const allMachines = window.ENGISIM_MACHINES || [];
+      
+      const dropdown = document.getElementById('search-dropdown');
+      if (!val) {
+        dropdown.classList.remove('active');
+        return;
+      }
+      
+      dropdown.innerHTML = '';
+      let matches = [];
+      
+      allMachines.forEach(m => {
+          if (m.name.toLowerCase().includes(val) || m.id.toLowerCase().includes(val) || m.category.toLowerCase().includes(val)) {
+              matches.push({ name: m.name, link: 'simulator.html?model=' + m.id, icon: m.icon || 'âš™ï¸' });
+          }
+      });
+      
+      if (matches.length > 0) {
+        matches.slice(0, 8).forEach(match => {
+          const a = document.createElement('a');
+          a.href = match.link;
+          a.className = 'autocomplete-item';
+          a.innerHTML = `<span class="autocomplete-icon">${match.icon}</span> <span>${match.name}</span>`;
+          dropdown.appendChild(a);
+        });
+        dropdown.classList.add('active');
+        
+        matches.forEach(match => {
+            const a = document.createElement('a');
+            a.href = match.link;
+            a.className = 'subcat-card';
+            a.innerHTML = match.name;
+            subgrid.appendChild(a);
+        });
+      } else {
+        const div = document.createElement('div');
+        div.className = 'autocomplete-item';
+        div.style.color = 'var(--text-muted)';
+        div.innerText = 'No exact matches found...';
+        dropdown.appendChild(div);
+        dropdown.classList.add('active');
+        
+        subgrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 2rem;">No models found matching your search. Try checking the categories.</div>';
+      }
+    });
+
+    document.getElementById('global-search').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const dropdown = document.getElementById('search-dropdown');
+        if (dropdown && dropdown.classList.contains('active')) {
+          const firstLink = dropdown.querySelector('a.autocomplete-item');
+          if (firstLink) {
+            window.location.href = firstLink.href;
+          }
+        }
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-wrapper')) {
+        const dropdown = document.getElementById('search-dropdown');
+        if (dropdown) dropdown.classList.remove('active');
+      }
+    });
+
+    // Auth UI handling
+    const authWrapper = document.getElementById('auth-wrapper');
+    function updateAuthUI(user) {
+      if (user) {
+        authWrapper.innerHTML = `
+          <div class="user-avatar-btn" onclick="document.getElementById('profile-dropdown').classList.toggle('show')">
+            <img src="${user.photoURL || 'https://via.placeholder.com/36'}" alt="User">
+            <span style="color:white; font-size:0.95rem; font-weight:600;">${user.displayName || 'User'}</span>
+          </div>
+          <div class="dropdown" id="profile-dropdown">
+            <a href="messages.html">💬 Messages & Chatbots</a>
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 5px 0;">
+            <button class="danger" id="btn-logout">🚫 Logout</button>
+          </div>
+        `;
+        document.getElementById('btn-logout').onclick = () => signOutUser();
+      } else {
+        authWrapper.innerHTML = `
+          <button class="btn-primary" onclick="document.getElementById('signin-dropdown').classList.toggle('show')">Sign In</button>
+          <div class="dropdown" id="signin-dropdown">
+            <button id="btn-login-google" style="background: white; color: black;"><img alt="EngiSim Image" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="18"> Sign in with Google</button>
+            <button id="btn-login-microsoft" style="background: #0078d4; color: white;"><img alt="EngiSim Image" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" width="18"> Sign in with Microsoft</button>
+          </div>
+        `;
+        document.getElementById('btn-login-google').onclick = () => signInWithGoogle();
+        document.getElementById('btn-login-microsoft').onclick = () => signInWithMicrosoft();
+      }
+    }
+
+    document.addEventListener("engisim-auth-changed", (e) => updateAuthUI(e.detail.user));
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest('.auth-container')) {
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+      }
+    });
+
+    initAuth();
+    window.renderDomains();
+
+    // Fetch and render trending models
+    async function renderTrending() {
+      try {
+        const snap = await getDocs(collection(db, 'model_analytics'));
+        const views = {};
+        snap.forEach(doc => {
+           const d = doc.data();
+           if (d.modelId) {
+             views[d.modelId] = (views[d.modelId] || 0) + 1;
+           }
+        });
+        const top = Object.keys(views).sort((a,b) => views[b] - views[a]).slice(0, 5);
+        if (top.length > 0) {
+           const scroller = document.getElementById('trending-scroller');
+           scroller.innerHTML = '';
+           top.forEach(modelId => {
+              const machine = MACHINES.find(m => m.id === modelId);
+              if (machine) {
+                const card = document.createElement('a');
+                card.href = `simulator.html?model=${modelId}`;
+                card.className = 'model-card';
+                const isPremium = machine.isPremium ? '<div class="premium-badge">PRO</div>' : '';
+                card.innerHTML = `
+                  <div class="model-card-img" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(0,200,255,0.2), rgba(124,106,255,0.2)); font-size: 4rem;">
+                    ${isPremium ? '<div class="card-badge badge-trending">PRO</div>' : '<div class="card-badge badge-trending">Trending</div>'}
+                    ${machine.icon || 'âš™ï¸'}
+                  </div>
+                  <h3>${machine.name}</h3>
+                  <p>Explore this popular interactive 3D model.</p>
+                `;
+                scroller.appendChild(card);
+              }
+           });
+           document.getElementById('trending-section').style.display = 'block';
+        }
+      } catch(e) {
+        console.error("Failed to load trending models", e);
+      }
+    }
+    renderTrending();
+  </script>
+<script type="module" src="ads.js?v=1783402802.59254"></script>
+</body>
+</html>

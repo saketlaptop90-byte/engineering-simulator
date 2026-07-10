@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulator - EngiSim 3D Encyclopedia</title>
+  <meta name="description" content="Explore interactive 3D engineering and scientific models. Disassemble, animate, and study detailed systems." />
+  <meta name="keywords" content="3D simulator, engineering, interactive models, STEM, anatomy, space" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+
+  <script>
+    (function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const cat = urlParams.get('category');
+      if (cat) {
+        const titleName = cat.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        document.title = titleName + " - EngiSim 3D Encyclopedia";
+        
+        // Also update description meta tag if possible before render
+        document.addEventListener('DOMContentLoaded', () => {
+          let metaDesc = document.querySelector('meta[name="description"]');
+          if (metaDesc) {
+            metaDesc.setAttribute('content', 'Explore interactive 3D engineering and scientific models for ' + titleName + '. Disassemble, animate, and study detailed systems.');
+          }
+        });
+      }
+    })();
+  </script>
+
+  <meta name="description" content="Explore interactive 3D engineering and scientific models for Simulator. Disassemble, animate, and study detailed systems.">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 8px;
+      line-height: 1;
+    }
+    .hamburger-btn:hover { background: rgba(255,255,255,0.1); }
+    @media (max-width: 768px) {
+      .hamburger-btn { display: block; }
+      nav .nav-links {
+        display: none !important;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(0,0,0,0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 0 0 12px 12px;
+        padding: 10px;
+        min-width: 200px;
+        gap: 4px;
+      }
+      nav .nav-links.mobile-open { display: flex !important; }
+      nav .nav-links a { display: block; padding: 8px 12px; border-radius: 6px; margin-left: 0 !important; }
+      nav .nav-links a:hover { background: rgba(255,255,255,0.05); }
+    }
+  </style>
+  <script>
+    window.onerror = function(msg, url, lineNo, columnNo, error) {
+        console.error('EngiSim Error:', msg, 'at', url, lineNo, columnNo);
+        var status = document.getElementById('loader-status');
+        if(status) status.innerHTML = "<span style='color:#ef4444'>" + msg + "</span>";
+        return false;
+    };
+    window.addEventListener("unhandledrejection", function(e) { 
+        console.error('EngiSim Rejection:', e.reason);
+        var status = document.getElementById('loader-status');
+        if(status) status.innerHTML = "<span style='color:#ef4444'>Error: " + (e.reason && e.reason.message || 'Module load failed') + "</span>";
+    });
+  </script>
+<link rel="canonical" href="https://engineering-universe.web.app/simulator.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "EngiSim 3D Simulator",
+    "description": "Interactive 3D encyclopedia for engineering, science, and machinery. Disassemble, animate, and study highly detailed 3D models.",
+    "url": "https://engineering-universe.web.app/simulator.html",
+    "applicationCategory": "EducationalApplication",
+      <a href="economy.html" id="nav-economy" style="color: white; text-decoration: none; margin-left: 20px; font-weight: 500; display: none;">Premium & Ads</a>
+      <a href="request.html" id="nav-requests" style="color: white; text-decoration: none; margin-left: 20px; font-weight: 500; display: none;">Requests</a>
+      <span id="nav-unauth" style="position: relative;">
+        <button id="nav-signin-main" onclick="var d=document.getElementById('signin-dropdown'); if(d){ d.style.display=d.style.display==='none'?'flex':'none'; } event.stopPropagation(); return false;" style="background: linear-gradient(135deg, #00c8ff, #7c6aff); color: white; padding: 8px 20px; border-radius: 6px; font-weight: bold; border: none; cursor: pointer; margin-left: 20px;">Sign In</button>
+        <div id="signin-dropdown" style="display: none; z-index: 2000; position: absolute; top: 100%; right: 0; margin-top: 10px; background: rgba(12, 18, 37, 0.95); border: 1px solid rgba(0,200,255,0.2); border-radius: 8px; padding: 10px; flex-direction: column; gap: 10px; min-width: 150px; backdrop-filter: blur(10px);">
+           <button id="nav-signin-google" style="background: #ffffff; color: black; padding: 8px 16px; border-radius: 4px; font-weight: bold; border: none; cursor: pointer; width: 100%;">Google</button>
+           <button id="nav-signin-bing" style="background: #0078d4; color: white; padding: 8px 16px; border-radius: 4px; font-weight: bold; border: none; cursor: pointer; width: 100%;">Microsoft</button>
+        </div>
+      </span>
+      <span id="nav-auth" class="user-profile" style="display: none; align-items: center; gap: 10px; margin-left: 20px;">
+        <img id="nav-user-pic" src="" alt="User" style="width: 32px; height: 32px; border-radius: 50%;">
+        <span id="nav-user-name" style="color:white; font-size: 0.9rem;">User</span>
+        <button id="nav-signout" style="background: transparent; border: 1px solid #ef4444; color: #ef4444; padding: 4px 10px; border-radius: 4px; cursor: pointer;">Logout</button>
+      </span>
+    </div>
+  </nav>
+  <script>
+    document.getElementById('hamburger-btn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('nav-links').classList.toggle('mobile-open');
+    });
+    document.addEventListener('click', function(e) {
+      var nav = document.getElementById('nav-links');
+      if (nav && !e.target.closest('nav')) nav.classList.remove('mobile-open');
+    });
+  </script>
+
+  
+  <noscript>
+    <main style="padding: 2rem; font-family: sans-serif; color: white; background: #000;">
+      <h1>Simulator - Engineering & Scientific Models</h1>
+      <p>Welcome to the interactive 3D encyclopedia for Simulator. This category features highly detailed, explorable 3D models of machinery, biology, anatomy, and physics. Enable JavaScript to interact with the 3D models using WebGL and THREE.js.</p>
+    </main>
+  </noscript>
+  <!--  Loading Screen  -->
+  <div id="loading-screen">
+    <div class="loader-content">
+      <div class="loader-icon">
+        <div class="gear gear-1">⚙️</div>
+        <div class="gear gear-2">⚙️</div>
+      </div>
+      <h1>EngiSim <span class="accent">3D</span></h1>
+      <p class="loader-subtitle">Interactive Engineering Simulator</p>
+      <div class="loader-bar"><div class="loader-fill" id="loader-fill"></div></div>
+      <p class="loader-status" id="loader-status">Initializing renderer...</p>
+    </div>
+  </div>
+
+  <!-- ═══ Main Application ═══ -->
+  <div id="app" class="hidden">
+
+    <!-- ─── Left Sidebar: Machine Selector ─── -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <span class="logo-icon">⚙️</span>
+          <div>
+            <h1>EngiSim</h1>
+            <span class="version">v2.0 — Ultra Level</span>
+          </div>
+        </div>
+        <button class="panel-close-btn" id="btn-close-sidebar" title="Close sidebar">✕</button>
+      </div>
+
+      
+      <div class="sidebar-tabs" style="display: flex; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 15px;">
+        <button class="tab-btn active" data-tab="catalog" style="flex:1; padding: 10px; background: none; border: none; color: #00c8ff; border-bottom: 2px solid #00c8ff; cursor: pointer; font-weight: bold;">Catalog</button>
+        <button class="tab-btn" data-tab="learning" style="flex:1; padding: 10px; background: none; border: none; color: white; cursor: pointer; font-weight: bold;">Learning Mode</button>
+      </div>
+      
+      <div id="tab-catalog">
+        <div class="search-wrapper">
+
+        <span class="search-icon">🔍</span>
+        <input type="text" id="machine-search" placeholder="Search machines..." autocomplete="off">
+      </div>
+
+      
+      </div> <!-- End tab-catalog -->
+      
+      <div id="tab-learning" style="display: none; padding: 0 15px; overflow-y: auto;">
+        <h2 id="learn-title" style="color: #00c8ff; font-size: 1.5rem; margin-bottom: 5px;">Select a Model</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+           <div id="learn-difficulty" style="font-weight: bold;"></div>
+           <button id="btn-audio-tour" style="background: rgba(0,200,255,0.2); border: 1px solid #00c8ff; color: #00c8ff; padding: 4px 10px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 5px; font-size: 0.8rem; display:none;">🔊 Audio Tour</button>
+        </div>
+        
+        <div class="learn-section">
+          <h3 style="color: #ccc; margin-bottom: 5px;">What is it?</h3>
+          <p id="learn-what" style="font-size: 0.9rem; line-height: 1.4; color: #aaa; margin-bottom: 15px;">...</p>
+        </div>
+        <div class="learn-section">
+          <h3 style="color: #ccc; margin-bottom: 5px;">How does it work?</h3>
+          <p id="learn-how" style="font-size: 0.9rem; line-height: 1.4; color: #aaa; margin-bottom: 15px;">...</p>
+        </div>
+        <div class="learn-section">
+          <h3 style="color: #ccc; margin-bottom: 5px;">Applications</h3>
+          <p id="learn-apps" style="font-size: 0.9rem; line-height: 1.4; color: #aaa; margin-bottom: 15px;">...</p>
+        </div>
+        
+        <div class="learn-section">
+          <h3 style="color: #ccc; margin-bottom: 5px;">Advantages</h3>
+          <p id="learn-adv" style="font-size: 0.9rem; line-height: 1.4; color: #aaa; margin-bottom: 15px;">...</p>
+        </div>
+        <div class="learn-section">
+          <h3 style="color: #ccc; margin-bottom: 5px;">Disadvantages</h3>
+          <p id="learn-disadv" style="font-size: 0.9rem; line-height: 1.4; color: #aaa; margin-bottom: 15px;">...</p>
+        </div>
+        <div class="learn-section">
+          <h3 style="color: #ccc; margin-bottom: 5px;">History</h3>
+          <p id="learn-history" style="font-size: 0.9rem; line-height: 1.4; color: #aaa; margin-bottom: 15px;">...</p>
+        </div>
+        <div class="learn-section">
+          <h3 style="color: #ccc; margin-bottom: 5px;">Future Technologies</h3>
+          <p id="learn-future" style="font-size: 0.9rem; line-height: 1.4; color: #aaa; margin-bottom: 15px;">...</p>
+        </div>
+        <button id="btn-take-quiz" style="width: 100%; background: linear-gradient(135deg, #00c8ff, #7c6aff); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: transform 0.2s;">🎓 Take Certification Quiz</button>
+      </div>
+      
+      <div class="category-label">
+MECHANICAL</div>
+      <div id="machine-list-mechanical" class="machine-list"></div>
+
+      <div class="category-label">ELECTRICAL</div>
+      <div id="machine-list-electrical" class="machine-list"></div>
+
+      <div class="category-label">THERMAL / FLUID</div>
+      <div id="machine-list-thermal" class="machine-list"></div>
+
+      <div class="category-label">AEROSPACE / MISC</div>
+      <div id="machine-list-aerospace" class="machine-list"></div>
+
+      <div class="category-label">🚂 ENGINE VARIANTS</div>
+      <div id="machine-list-engines" class="machine-list"></div>
+
+      <div class="category-label">🛰️ ADVANCED MACHINES</div>
+      <div id="machine-list-advanced" class="machine-list"></div>
+
+      <div class="category-label">🧪 CHEMISTRY</div>
+      <div id="machine-list-chemistry" class="machine-list"></div>
+
+      <div class="category-label">🧬 THE HUMAN ATLAS</div>
+      <div id="machine-list-anatomy" class="machine-list"></div>
+
+      <div class="sidebar-footer">
+        <div class="stat-row">
+          <span class="stat"><strong id="stat-machines">25</strong> Machines</span>
+          <span class="stat"><strong id="stat-parts">0</strong> Parts</span>
+        </div>
+        <p class="footer-credit">Built for Engineers</p>
+      </div>
+    </aside>
+
+    <!-- ─── Main Viewport ─── -->
+    <main id="main-content">
+
+      <!-- Top Toolbar -->
+      <div id="toolbar">
+        <button id="btn-back-home" title="Back to Categories" style="background: rgba(0,200,255,0.1); border: 1px solid rgba(0,200,255,0.2); color: #00c8ff; font-size: 1.2rem; cursor: pointer; margin-right: 15px; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 8px; transition: all 0.2s;" onclick="window.location.href='index.html'" onmouseover="this.style.background='rgba(0,200,255,0.3)'" onmouseout="this.style.background='rgba(0,200,255,0.1)'">←</button>
+        <div class="mode-group">
+          <button class="mode-btn active" data-mode="explore" id="mode-explore">
+            <span class="mode-icon">🔍</span><span class="mode-label">Explore</span>
+          </button>
+          <button class="mode-btn" data-mode="explode" id="mode-explode">
+            <span class="mode-icon">💥</span><span class="mode-label">Explode</span>
+          </button>
+
+          <button class="mode-btn" data-mode="xsection" id="mode-xsection">
+            <span class="mode-icon">🔪</span><span class="mode-label">Cross-Section</span>
+          </button>
+          <button class="mode-btn" data-mode="animate" id="mode-animate">
+
+            <span class="mode-icon">▶️</span><span class="mode-label">Animate</span>
+          </button>
+          <button class="mode-btn" data-mode="damage" id="mode-damage">
+            <span class="mode-icon">⚠️</span><span class="mode-label">Damage</span>
+          </button>
+          <button class="mode-btn" data-mode="assemble" id="mode-assemble">
+            <span class="mode-icon">🔧</span><span class="mode-label">Assemble</span>
+          </button>
+          <button class="mode-btn" data-mode="quiz" id="mode-quiz">
+            <span class="mode-icon">🔎</span><span class="mode-label">Quiz</span>
+          </button>
+        </div>
+        <div class="toolbar-actions">
+          <button class="tool-btn" id="btn-toggle-sidebar" title="Menu" style="display: none;">☰</button>
+          <button class="tool-btn" id="btn-share" title="Share Reference Link">🔗</button>
+          <button class="tool-btn" id="btn-report-model" title="Report Issue">🚩</button>
+          <button class="tool-btn" id="btn-reset-camera" title="Reset Camera">🔄</button>
+          <button class="tool-btn" id="btn-save-camera" title="Save Camera">💾</button>
+          <button class="tool-btn" id="btn-wireframe" title="Toggle Wireframe">🕸️</button>
+          <button class="tool-btn" id="btn-labels" title="Toggle Labels">🏷️</button>
+          <button class="tool-btn" id="btn-zoom-in" title="Zoom In">➕</button>
+          <button class="tool-btn" id="btn-zoom-out" title="Zoom Out">➖</button>
+          <button class="tool-btn" id="btn-fullscreen" title="Fullscreen">🔲</button>
+          <button class="tool-btn" id="btn-toggle-info" title="Info Panel" style="display: none;">ℹ️</button>
+        </div>
+      </div>
+
+      <!-- 3D Canvas -->
+      <div id="viewport">
+        <canvas id="three-canvas"></canvas>
+        <div id="part-tooltip" class="hidden"></div>
+        <div id="viewport-hint" class="hidden">Click a part to inspect • Scroll to zoom • Drag to rotate</div>
+      </div>
+
+      <!-- Animation Speed Control -->
+      <div id="speed-control" class="floating-control hidden">
+        <label for="speed-slider">⏱ Speed</label>
+        <input type="range" id="speed-slider" min="0" max="5" step="0.1" value="1">
+        <span id="speed-value">1.0x</span>
+      </div>
+
+      <!-- Explode Slider -->
+      <div id="explode-control" class="floating-control hidden">
+        <label for="explode-slider">💥 Explode</label>
+        <input type="range" id="explode-slider" min="0" max="1" step="0.01" value="0">
+        <span id="explode-value">0%</span>
+      </div>
+
+    </main>
+
+    <!-- ─── Right Info Panel ─── -->
+    <aside id="info-panel">
+      <button class="panel-close-btn" id="btn-close-info" title="Close panel">✕</button>
+
+      <!-- Explore Panel -->
+      <div id="panel-explore" class="panel-section active">
+        <div class="panel-header">
+          <button id="btn-back-history" class="btn hidden" style="margin-right: 10px; background: rgba(0, 200, 255, 0.2); border: 1px solid #00c8ff; color: #00c8ff; padding: 4px 8px; font-size: 0.8em; border-radius: 4px; cursor: pointer;">← Back</button>
+          <h2 id="machine-title">Select a Machine</h2>
+          <span id="machine-category-badge" class="badge hidden"></span>
+        </div>
+        <p id="machine-description" class="panel-desc">Choose a machine from the sidebar to start exploring its components in 3D.</p>
+
+        <div id="part-info" class="info-card hidden">
+          <h3 id="part-name">Part Name</h3>
+          <div class="info-grid">
+            <div class="info-cell">
+              <span class="cell-label">Material</span>
+              <span class="cell-value" id="part-material">—</span>
+            </div>
+            <div class="info-cell">
+              <span class="cell-label">Function</span>
+              <span class="cell-value" id="part-function">—</span>
+            </div>
+            <div class="info-cell">
+              <span class="cell-label">Connected To</span>
+              <span class="cell-value" id="part-connections">—</span>
+            </div>
+            <div class="info-cell full-width">
+              <span class="cell-label">Failure Effect</span>
+              <span class="cell-value" id="part-failure">—</span>
+            </div>
+          </div>
+          <p id="part-description" class="part-desc"></p>
+        </div>
+
+        <div id="parts-list-section">
+          <h3 class="section-title">🔼 All Parts</h3>
+          <ul id="parts-list-ul"></ul>
+        </div>
+      </div>
+
+      <!-- Damage Panel -->
+      <div id="panel-damage" class="panel-section hidden">
+        <div class="panel-header">
+          <h2>⚠️ Damage Simulator</h2>
+        </div>
+        <p class="panel-desc">Click on parts to mark them as damaged. See cascading failures and all possible failure permutations.</p>
+
+        <div id="damaged-parts-list"></div>
+
+        <div id="damage-analysis" class="hidden">
+          <h3 class="section-title">Cascade Analysis</h3>
+          <div id="cascade-result"></div>
+        </div>
+
+        <button id="btn-clear-damage" class="btn btn-secondary">✖ Clear Damage</button>
+
+        <div id="permutation-section">
+          <h3 class="section-title">All Failure Combinations</h3>
+          <div class="perm-controls">
+            <button class="btn btn-sm active" data-perm="single">Single</button>
+            <button class="btn btn-sm" data-perm="double">Double</button>
+          </div>
+          <div id="permutation-list"></div>
+        </div>
+      </div>
+
+      <!-- Assembly Panel -->
+      <div id="panel-assemble" class="panel-section hidden">
+        <div class="panel-header">
+          <h2>🔧 Assembly Mode</h2>
+        </div>
+        <div id="assembly-progress-bar">
+          <div class="progress-track">
+            <div class="progress-fill" id="assembly-fill"></div>
+          </div>
+          <span id="assembly-step-counter">Step 0 / 0</span>
+        </div>
+        <div id="assembly-instruction" class="info-card">
+          <p>Click the correct next part to assemble the machine step by step.</p>
+        </div>
+        <div id="assembly-order-list"></div>
+        <button id="btn-reset-assembly" class="btn btn-secondary">🔄 Reset Assembly</button>
+      </div>
+
+      <!-- Quiz Panel -->
+      <div id="panel-quiz" class="panel-section hidden">
+        <div class="panel-header">
+          <h2>📝 Quiz Mode</h2>
+        </div>
+        <div id="quiz-score-bar">
+          <div class="score-item">
+            <span class="score-label">Score</span>
+            <span class="score-val" id="score-value">0</span>
+          </div>
+          <div class="score-item">
+            <span class="score-label">Streak</span>
+            <span class="score-val" id="streak-value">0</span>
+          </div>
+          <div class="score-item">
+            <span class="score-label">Progress</span>
+            <span class="score-val" id="quiz-progress">0/0</span>
+          </div>
+        </div>
+        <div id="quiz-difficulty-selector">
+          <button class="diff-btn active" data-diff="basic">🟢 Basic</button>
+          <button class="diff-btn" data-diff="advanced">🟡 Advanced</button>
+          <button class="diff-btn" data-diff="expert">🔴 Expert</button>
+        </div>
+        <div id="quiz-body" class="hidden">
+          <div id="quiz-question-text" class="quiz-q"></div>
+          <div id="quiz-options-list"></div>
+          <div id="quiz-feedback" class="hidden"></div>
+          <button id="btn-next-question" class="btn btn-primary hidden">Next →</button>
+        </div>
+        <button id="btn-start-quiz" class="btn btn-primary">Start Quiz</button>
+      </div>
+
+    </aside>
+  </div>
+  <div id="mobile-backdrop" class="mobile-backdrop"></div>
+
+  <!-- Import Map for Three.js -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script>
+    // Safety timeout - if still on loading screen after 15s, show diagnostic
+    setTimeout(function() {
+      var s = document.getElementById('loader-status');
+      var ls = document.getElementById('loading-screen');
+      if (ls && ls.style.display !== 'none' && s && s.textContent === 'Initializing renderer...') {
+        s.textContent = 'Module failed to load. Check browser console (F12) for details.';
+        s.style.color = '#ef4444';
+      }
+    }, 15000);
+  </script>
+  <script type="module" src="app.js" onerror="document.getElementById('loader-status').innerHTML='<span style=\'color:red\'>Critical Error: Failed to load app bundle. Check adblockers or network.</span>';"></script>
+  <script type="module" src="auth.js"></script>
+  <script type="module">import { initAuth } from "./auth.js"; initAuth();</script>
+  <div id="webgl-warning" style="display:none; position:fixed; top:0; left:0; width:100%; background:#ef4444; color:white; text-align:center; padding:10px; z-index:9999; font-weight:bold;">Warning: WebGL is not supported or hardware acceleration is disabled. 3D models may not render correctly.</div>
+  <script>
+    try {
+      var canvas = document.createElement('canvas');
+      var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) document.getElementById('webgl-warning').style.display = 'block';
+    } catch(e) {
+      document.getElementById('webgl-warning').style.display = 'block';
+    }
+  </script>
+  <button id="chat-toggle" style="position:fixed; bottom:20px; right:20px; z-index:9999; background:linear-gradient(135deg, #00c8ff, #7c6aff); color:white; border:none; border-radius:50%; width:60px; height:60px; font-size:24px; cursor:pointer; box-shadow:0 4px 12px rgba(0,200,255,0.4);">💬</button>
+  <div id="chatbot-panel" style="display:none; position:fixed; bottom:90px; right:20px; width:350px; height:500px; background:rgba(12,18,37,0.95); border:1px solid rgba(0,200,255,0.2); border-radius:12px; z-index:9999; flex-direction:column; backdrop-filter:blur(10px); overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.5);">
+    <div style="background:rgba(0,0,0,0.3); padding:15px; border-bottom:1px solid rgba(0,200,255,0.2); display:flex; justify-content:space-between; align-items:center;">
+      <span class="chat-header-title" style="color:#00c8ff; font-weight:600; font-family:'Outfit', sans-serif;">AI Assistant</span>
+      <button id="chat-close" style="background:none; border:none; color:white; font-size:20px; cursor:pointer;">✖</button>
+    </div>
+    <div id="chat-messages" style="flex:1; padding:15px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; font-family:'Outfit', sans-serif; font-size:0.9rem;"></div>
+    <div style="padding:15px; border-top:1px solid rgba(0,200,255,0.2); display:flex; gap:10px; background:rgba(0,0,0,0.2);">
+      <input type="text" id="chat-input" placeholder="Ask about the machine..." style="flex:1; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:white; padding:10px 15px; border-radius:20px; outline:none; font-family:'Outfit', sans-serif;">
+      <button id="chat-send" style="background:linear-gradient(135deg, #00c8ff, #7c6aff); color:white; border:none; border-radius:20px; padding:10px 20px; cursor:pointer; font-weight:600; font-family:'Outfit', sans-serif;">Send</button>
+    </div>
+  </div>
+  <script type="module" src="ads.js"></script>
+</body>
+</html>

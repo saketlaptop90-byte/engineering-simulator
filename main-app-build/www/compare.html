@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Models - EngiSim 3D</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { 
+      --bg-base: #030712;
+      --accent: #00e5ff;
+      --text-main: #f9fafb;
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      background-color: var(--bg-base); 
+      font-family: 'Outfit', sans-serif; 
+      color: var(--text-main); 
+      overflow: hidden; 
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    nav {
+      background: rgba(3, 7, 18, 0.9);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--glass-border);
+      z-index: 1000;
+    }
+    .logo { color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold; }
+    .logo span { color: var(--accent); }
+    .nav-links a { color: white; text-decoration: none; margin-left: 15px; font-size: 0.9rem; }
+    
+    .compare-container {
+      display: flex;
+      flex: 1;
+      width: 100%;
+    }
+    .panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border-right: 1px solid var(--glass-border);
+    }
+    .panel:last-child {
+      border-right: none;
+    }
+    .panel-header {
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    .panel-header select {
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: 1px solid var(--accent);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      width: 60%;
+    }
+    .canvas-container {
+      flex: 1;
+      position: relative;
+      background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+    }
+    .loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--accent);
+      display: none;
+      font-weight: bold;
+      z-index: 5;
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">⚙️ EngiSim <span>3D</span> Compare</a>
+    <div class="nav-links">
+      <a href="simulator.html">Back to Simulator</a>
+    </div>
+  </nav>
+
+  <div class="compare-container">
+    <!-- Left Panel -->
+    <div class="panel" id="panel-1">
+      <div class="panel-header">
+        <span>Model A</span>
+        <select id="select-1">
+          <option value="">Select a model...</option>
+        </select>
+      </div>
+      <div class="canvas-container" id="container-1">
+        <div class="loader" id="loader-1">Loading Model...</div>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="panel" id="panel-2">
+      <div class="panel-header">
+        <span>Model B</span>
+        <select id="select-2">
+          <option value="">Select a model...</option>
+        </select>
+      </div>
+      <div class="canvas-container" id="container-2">
+        <div class="loader" id="loader-2">Loading Model...</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="machines.js"></script>
+  <script type="module" src="compare.js"></script>
+<script type="module" src="ads.js?v=1783402802.58553"></script>
+</body>
+</html>
+

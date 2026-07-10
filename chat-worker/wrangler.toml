@@ -1,0 +1,14 @@
+name = "engisim-chat-worker"
+main = "src/index.js"
+compatibility_date = "2024-04-05"
+
+[ai]
+binding = "AI"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "engisim-chat-db"
+database_id = "0cb94262-2634-4187-a206-29f3ab740068"
+
+[vars]
+FIREBASE_PROJECT_ID = "engineering-universe"

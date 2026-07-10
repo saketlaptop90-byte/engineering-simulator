@@ -1,0 +1,47 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "hosting": [
+    {
+      "target": "main",
+      "public": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**",
+        "node_modules/**",
+        "temp_pup/**",
+        "chat-worker/**",
+        "engisim-admin/**",
+        ".gemini/**",
+        "**/*.cmd",
+        "**/*.bat",
+        "**/*.ps1",
+        "**/*.exe",
+        "**/*.apk",
+        "**/*.py",
+        "**/*.cjs",
+        "**/*.mjs",
+        "main-app-build/**",
+        "test*",
+        "scratch*"
+      ]
+    },
+    {
+      "target": "admin",
+      "public": "engisim-admin/dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "main-app-build",
+  "version": "1.0.0",
+  "description": "EngiSim Main App",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Saket",
+  "license": "ISC",
+  "type": "commonjs",
+  "build": {
+    "appId": "com.engisim.main",
+    "productName": "EngiSim",
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "files": [
+      "www/**/*",
+      "main.js",
+      "package.json"
+    ]
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/cli": "^8.4.1",
+    "@capacitor/core": "^8.4.1"
+  },
+  "devDependencies": {
+    "electron": "^31.1.0",
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2"
+  }
+}

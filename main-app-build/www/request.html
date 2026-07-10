@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Model - EngiSim 3D</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { 
+      --bg-base: #030712;
+      --bg-panel: rgba(17, 24, 39, 0.6);
+      --accent: #00e5ff;
+      --accent-2: #8b5cf6;
+      --text-main: #f9fafb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      background-color: var(--bg-base); 
+      font-family: 'Outfit', sans-serif; 
+      color: var(--text-main); 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    .container {
+      background: var(--bg-panel);
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+      max-width: 800px;
+      backdrop-filter: blur(10px);
+    }
+    h1 { font-family: 'Space Grotesk', sans-serif; margin-bottom: 20px; color: var(--accent); text-align: center; }
+    p { margin-bottom: 30px; font-size: 1.1rem; color: rgba(255,255,255,0.7); text-align: center; }
+    .pro-badge {
+      display: block;
+      width: max-content;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #000;
+      padding: 5px 12px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      font-family: 'Outfit', sans-serif;
+    }
+    button {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.2s;
+    }
+    button:hover { transform: scale(1.02); }
+    .back-link { display: block; margin-top: 20px; color: var(--accent); text-decoration: none; text-align: center; }
+    
+    .requests-list { margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+    .request-card { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.05); }
+    .request-card h3 { color: var(--accent); margin-bottom: 10px; }
+    .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+    .badge.pending { background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.5); }
+    .badge.quoted { background: rgba(0, 200, 255, 0.2); color: #00c8ff; border: 1px solid rgba(0, 200, 255, 0.5); }
+    .badge.accepted { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.5); }
+    .badge.rejected { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.5); }
+    .badge.completed { background: rgba(139, 92, 246, 0.2); color: #8b5cf6; border: 1px solid rgba(139, 92, 246, 0.5); }
+    .badge.paid { background: rgba(52, 211, 153, 0.2); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.5); }
+    .btn-group { display: flex; gap: 10px; margin-top: 15px; }
+    .btn-group button { padding: 10px; font-size: 0.9rem; }
+    .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+    .btn-danger { background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #ef4444; }
+    .btn-success { background: linear-gradient(135deg, #10b981, #059669); }
+    #unauth-msg { text-align: center; color: #ef4444; font-size: 1.2rem; margin-bottom: 20px; display: none; }
+  </style>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Engineering Universe 3D Simulator. Explore, analyze, and learn about engineering mechanisms in interactive 3D.">
+    <meta name="keywords" content="Engineering, Simulator, 3D Models, Mechanical Engineering, Education, Civil Engineering">
+    <meta name="author" content="EngiSim Team">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Engineering Universe 3D">
+    <meta property="og:description" content="Explore, analyze, and learn about engineering mechanisms in interactive 3D.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://engineering-universe-72120.web.app/">
+    
+    <!-- Bing/Google Verification (Optional later, generic for now) -->
+    <meta name="robots" content="index, follow">
+
+</head>
+<body>
+  <div class="container">
+    <div class="pro-badge">PRO Priority</div>
+    <h1>Request a 3D Model</h1>
+    <p>Submit custom models to be built by our team. You'll receive a quote and timeline before paying.</p>
+    
+    <div id="unauth-msg">Please Sign In from the home page to request models.</div>
+
+    <form id="request-form" style="display: none;">
+      <input type="text" id="req-model-name" placeholder="Model Name (e.g., Jet Engine)" required>
+      <input type="text" id="req-category" placeholder="Category (e.g., Aerospace)">
+      <textarea id="req-desc" rows="4" placeholder="Detailed description of the machine/model..." required></textarea>
+      <button type="submit">Submit Request</button>
+    </form>
+    
+    <div class="requests-list" id="requests-list" style="display: none;">
+      <h2>Your Requests</h2>
+      <div id="requests-container">Loading...</div>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+
+  <script type="module">
+    import { auth, db, collection, addDoc, query, where, getDocs, doc, updateDoc, onAuthStateChanged, serverTimestamp } from './firebase.js';
+
+    let currentUser = null;
+    const form = document.getElementById('request-form');
+    const listContainer = document.getElementById('requests-container');
+    const unauthMsg = document.getElementById('unauth-msg');
+    const requestsListDiv = document.getElementById('requests-list');
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        currentUser = user;
+        form.style.display = 'block';
+        requestsListDiv.style.display = 'block';
+        unauthMsg.style.display = 'none';
+        loadRequests();
+      } else {
+        currentUser = null;
+        form.style.display = 'none';
+        requestsListDiv.style.display = 'none';
+        unauthMsg.style.display = 'block';
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!currentUser) return;
+      
+      const modelName = document.getElementById('req-model-name').value;
+      const category = document.getElementById('req-category').value;
+      const desc = document.getElementById('req-desc').value;
+      
+      try {
+        await addDoc(collection(db, 'model_requests'), {
+          uid: currentUser.uid,
+          contactEmail: currentUser.email,
+          modelName,
+          category,
+          description: desc,
+          status: 'pending',
+          timestamp: serverTimestamp()
+        });
+        alert('Request submitted! Our team will review it and provide a quote.');
+        form.reset();
+        loadRequests();
+      } catch (err) {
+        console.error(err);
+        alert('Failed to submit request.');
+      }
+    });
+
+    async function loadRequests() {
+      if (!currentUser) return;
+      try {
+        const q = query(collection(db, 'model_requests'), where('uid', '==', currentUser.uid));
+        const snap = await getDocs(q);
+        
+        if (snap.empty) {
+          listContainer.innerHTML = '<p>You have no pending requests.</p>';
+          return;
+        }
+
+        let html = '';
+        snap.forEach(d => {
+          const r = d.data();
+          let actions = '';
+          
+          if (r.status === 'awaiting_user_confirmation') {
+            actions = `
+              <div class="btn-group">
+                <button onclick="updateRequestStatus('${d.id}', 'accepted')">Accept Quote</button>
+                <button class="btn-danger" onclick="updateRequestStatus('${d.id}', 'rejected')">Reject</button>
+              </div>
+            `;
+          } else if (r.status === 'accepted') {
+            const finalPrice = r.quoteDiscount ? Math.max(0, r.quotePrice - r.quoteDiscount) : r.quotePrice;
+            actions = `
+              <div class="btn-group">
+                <button class="btn-success" onclick="processPayment('${d.id}')">Pay Now ($${finalPrice})</button>
+              </div>
+            `;
+          }
+
+          let priceHTML = '';
+          if (r.quotePrice !== undefined) {
+             const finalPrice = r.quoteDiscount ? Math.max(0, r.quotePrice - r.quoteDiscount) : r.quotePrice;
+             const discountText = r.quoteDiscount ? ` <span style="color:#fbbf24; text-decoration:line-through; margin-right:5px;">$${r.quotePrice}</span> (Discounted!) ` : '';
+             priceHTML = `<p style="font-size:0.9rem; text-align:left; margin-bottom:5px;"><strong>Quote:</strong> ${discountText}$${finalPrice} (Timeline: ${r.quoteTimeline})</p>`;
+          }
+
+          html += `
+            <div class="request-card">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h3>${r.modelName}</h3>
+                <span class="badge ${r.status}">${r.status}</span>
+              </div>
+              <p style="font-size:0.9rem; text-align:left; margin-bottom:10px;">${r.description}</p>
+              ${priceHTML}
+              ${actions}
+            </div>
+          `;
+        });
+        listContainer.innerHTML = html;
+      } catch (err) {
+        console.error(err);
+        listContainer.innerHTML = '<p>Error loading requests.</p>';
+      }
+    }
+
+    window.updateRequestStatus = async (id, status) => {
+      try {
+        await updateDoc(doc(db, 'model_requests', id), { status });
+        alert('Request updated successfully.');
+        loadRequests();
+      } catch (e) {
+        console.error(e);
+        alert('Failed to update request.');
+      }
+    };
+
+    window.processPayment = async (id) => {
+      // Mock payment flow
+      const conf = confirm("Proceed to secure checkout? (This is a mockup)");
+      if(conf) {
+        try {
+          await updateDoc(doc(db, 'model_requests', id), { status: 'paid_queued' });
+          alert('Payment successful! Your model has entered the build queue.');
+          loadRequests();
+        } catch (e) {
+          console.error(e);
+          alert('Payment failed.');
+        }
+      }
+    };
+  </script>
+<script type="module" src="ads.js?v=1783402802.60658"></script>
+</body>
+</html>
+

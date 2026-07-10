@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Models - EngiSim 3D</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { 
+      --bg-base: #030712;
+      --accent: #00e5ff;
+      --text-main: #f9fafb;
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      background-color: var(--bg-base); 
+      font-family: 'Outfit', sans-serif; 
+      color: var(--text-main); 
+      overflow: hidden; 
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    nav {
+      background: rgba(3, 7, 18, 0.9);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--glass-border);
+      z-index: 1000;
+    }
+    .logo { color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold; }
+    .logo span { color: var(--accent); }
+    .nav-links a { color: white; text-decoration: none; margin-left: 15px; font-size: 0.9rem; }
+    
+    .compare-container {
+      display: flex;
+      flex: 1;
+      width: 100%;
+    }
+    .panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border-right: 1px solid var(--glass-border);
+    }
+    .panel:last-child {
+      border-right: none;
+    }
+    .panel-header {
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 10;
+    }
+    .panel-header .panel-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+    /* Search input wrapper */
+    .search-wrapper {
+      position: relative;
+    }
+    .search-wrapper input {
+      width: 100%;
+      padding: 10px 14px;
+      padding-right: 36px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .search-wrapper input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 8px rgba(0, 229, 255, 0.15);
+    }
+    .search-wrapper .search-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.4);
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+    /* Dropdown results */
+    .search-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(3, 7, 18, 0.98);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+      backdrop-filter: blur(16px);
+    }
+    .search-dropdown.visible {
+      display: block;
+    }
+    .search-dropdown .dropdown-item {
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .search-dropdown .dropdown-item:hover,
+    .search-dropdown .dropdown-item.highlighted {
+      background: rgba(0, 229, 255, 0.12);
+    }
+    .search-dropdown .dropdown-item .item-icon {
+      flex-shrink: 0;
+    }
+    .search-dropdown .dropdown-item .item-name {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .search-dropdown .dropdown-item .item-cat {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.35);
+      text-transform: capitalize;
+    }
+    .search-dropdown .no-results {
+      padding: 14px;
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
+    }
+    .selected-model-badge {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+    .selected-model-badge.visible {
+      display: flex;
+    }
+    .selected-model-badge .badge-name {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--accent);
+    }
+    .selected-model-badge .badge-clear {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0 2px;
+    }
+    .selected-model-badge .badge-clear:hover {
+      color: #ef4444;
+    }
+    .canvas-container {
+      flex: 1;
+      position: relative;
+      background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+    }
+    .loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--accent);
+      display: none;
+      font-weight: bold;
+      z-index: 5;
+    }
+    .empty-state {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    .empty-state .empty-icon {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    /* Scrollbar */
+    .search-dropdown::-webkit-scrollbar { width: 6px; }
+    .search-dropdown::-webkit-scrollbar-track { background: transparent; }
+    .search-dropdown::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.3); border-radius: 3px; }
+
+    @media (max-width: 768px) {
+      .compare-container { flex-direction: column; }
+      .panel { border-right: none; border-bottom: 1px solid var(--glass-border); }
+      .panel:last-child { border-bottom: none; }
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <meta property="og:type" content="website" />
+    
+    <meta name="google-adsense-account" content="ca-pub-7318663619327346">
+
+  <meta name="description" content="Compare multiple 3D engineering models side-by-side with EngiSim's interactive comparison tool.">
+  <link rel="canonical" href="https://engineering-universe.web.app/compare.html">
+  <meta name="robots" content="index, follow">
+</head>
+<body>
+  <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Compare 3D Engineering Models</h1>
+
+
+  <nav>
+    <a href="index.html" class="logo">⚙️ EngiSim <span>3D</span> Compare</a>
+    <div class="nav-links">
+      <a href="simulator.html">Back to Simulator</a>
+    </div>
+  </nav>
+
+  <div class="compare-container">
+    <!-- Left Panel -->
+    <div class="panel" id="panel-1">
+      <div class="panel-header">
+        <span class="panel-title">Model A</span>
+        <div class="search-wrapper">
+          <input type="text" id="search-1" placeholder="🔍 Search 3500+ models..." autocomplete="off">
+          <div class="search-dropdown" id="dropdown-1"></div>
+        </div>
+        <div class="selected-model-badge" id="badge-1">
+          <span class="badge-name" id="badge-name-1"></span>
+          <button class="badge-clear" id="badge-clear-1" title="Clear selection">✕</button>
+        </div>
+      </div>
+      <div class="canvas-container" id="container-1">
+        <div class="loader" id="loader-1">Loading Model...</div>
+        <div class="empty-state" id="empty-1">
+          <div class="empty-icon">🔍</div>
+          Search and select a model above
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="panel" id="panel-2">
+      <div class="panel-header">
+        <span class="panel-title">Model B</span>
+        <div class="search-wrapper">
+          <input type="text" id="search-2" placeholder="🔍 Search 3500+ models..." autocomplete="off">
+          <div class="search-dropdown" id="dropdown-2"></div>
+        </div>
+        <div class="selected-model-badge" id="badge-2">
+          <span class="badge-name" id="badge-name-2"></span>
+          <button class="badge-clear" id="badge-clear-2" title="Clear selection">✕</button>
+        </div>
+      </div>
+      <div class="canvas-container" id="container-2">
+        <div class="loader" id="loader-2">Loading Model...</div>
+        <div class="empty-state" id="empty-2">
+          <div class="empty-icon">🔍</div>
+          Search and select a model above
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="compare.js"></script>
+</body>
+</html>

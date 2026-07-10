@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://engineering-universe-72120.web.app/sitemap.xml

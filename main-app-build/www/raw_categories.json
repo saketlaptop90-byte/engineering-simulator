@@ -1,0 +1,1722 @@
+[
+  {
+    "id": "ac",
+    "name": "Ac"
+  },
+  {
+    "id": "acoustic_engineering",
+    "name": "Acoustic Engineering"
+  },
+  {
+    "id": "acoustic_metamaterials",
+    "name": "Acoustic Metamaterials"
+  },
+  {
+    "id": "acoustical_engineering",
+    "name": "Acoustical Engineering"
+  },
+  {
+    "id": "acoustics",
+    "name": "Acoustics"
+  },
+  {
+    "id": "acoustics_engineering",
+    "name": "Acoustics Engineering"
+  },
+  {
+    "id": "advanced",
+    "name": "Advanced"
+  },
+  {
+    "id": "advanced_physics",
+    "name": "Advanced Physics"
+  },
+  {
+    "id": "aero",
+    "name": "Aero"
+  },
+  {
+    "id": "aerodynamics",
+    "name": "Aerodynamics"
+  },
+  {
+    "id": "aerospace",
+    "name": "Aerospace"
+  },
+  {
+    "id": "aes",
+    "name": "Aes"
+  },
+  {
+    "id": "agricultural",
+    "name": "Agricultural"
+  },
+  {
+    "id": "agricultural_engineering",
+    "name": "Agricultural Engineering"
+  },
+  {
+    "id": "agricultural_tech",
+    "name": "Agricultural Tech"
+  },
+  {
+    "id": "agronomy",
+    "name": "Agronomy"
+  },
+  {
+    "id": "air",
+    "name": "Air"
+  },
+  {
+    "id": "algebra",
+    "name": "Algebra"
+  },
+  {
+    "id": "amber",
+    "name": "Amber"
+  },
+  {
+    "id": "amusement",
+    "name": "Amusement"
+  },
+  {
+    "id": "amusement_rides",
+    "name": "Amusement Rides"
+  },
+  {
+    "id": "anamorphic",
+    "name": "Anamorphic"
+  },
+  {
+    "id": "anatomy",
+    "name": "Anatomy"
+  },
+  {
+    "id": "annealing",
+    "name": "Annealing"
+  },
+  {
+    "id": "antibody",
+    "name": "Antibody"
+  },
+  {
+    "id": "artificial",
+    "name": "Artificial"
+  },
+  {
+    "id": "artificial_intelligence",
+    "name": "Artificial Intelligence"
+  },
+  {
+    "id": "astro",
+    "name": "Astro"
+  },
+  {
+    "id": "astrobiology",
+    "name": "Astrobiology"
+  },
+  {
+    "id": "astrochemistry",
+    "name": "Astrochemistry"
+  },
+  {
+    "id": "astrophysics",
+    "name": "Astrophysics"
+  },
+  {
+    "id": "astrophysics_ground",
+    "name": "Astrophysics Ground"
+  },
+  {
+    "id": "astrophysics_space",
+    "name": "Astrophysics Space"
+  },
+  {
+    "id": "astroseismology",
+    "name": "Astroseismology"
+  },
+  {
+    "id": "atmospheric",
+    "name": "Atmospheric"
+  },
+  {
+    "id": "atmospheric_tech",
+    "name": "Atmospheric Tech"
+  },
+  {
+    "id": "atp",
+    "name": "Atp"
+  },
+  {
+    "id": "audio",
+    "name": "Audio"
+  },
+  {
+    "id": "audio_engineering",
+    "name": "Audio Engineering"
+  },
+  {
+    "id": "audio_equipment",
+    "name": "Audio Equipment"
+  },
+  {
+    "id": "audio_tech",
+    "name": "Audio Tech"
+  },
+  {
+    "id": "automated",
+    "name": "Automated"
+  },
+  {
+    "id": "automotive",
+    "name": "Automotive"
+  },
+  {
+    "id": "avian",
+    "name": "Avian"
+  },
+  {
+    "id": "avionics",
+    "name": "Avionics"
+  },
+  {
+    "id": "bci_engineering",
+    "name": "Bci Engineering"
+  },
+  {
+    "id": "biology",
+    "name": "Biology"
+  },
+  {
+    "id": "blockchain",
+    "name": "Blockchain"
+  },
+  {
+    "id": "bose",
+    "name": "Bose"
+  },
+  {
+    "id": "botany",
+    "name": "Botany"
+  },
+  {
+    "id": "brachytherapy",
+    "name": "Brachytherapy"
+  },
+  {
+    "id": "brain",
+    "name": "Brain"
+  },
+  {
+    "id": "calculus",
+    "name": "Calculus"
+  },
+  {
+    "id": "camera",
+    "name": "Camera"
+  },
+  {
+    "id": "carbon_capture",
+    "name": "Carbon Capture"
+  },
+  {
+    "id": "casino",
+    "name": "Casino"
+  },
+  {
+    "id": "casino_equipment",
+    "name": "Casino Equipment"
+  },
+  {
+    "id": "cell",
+    "name": "Cell"
+  },
+  {
+    "id": "centrifugal",
+    "name": "Centrifugal"
+  },
+  {
+    "id": "ceramics_engineering",
+    "name": "Ceramics Engineering"
+  },
+  {
+    "id": "chameleon",
+    "name": "Chameleon"
+  },
+  {
+    "id": "chemical_engineering",
+    "name": "Chemical Engineering"
+  },
+  {
+    "id": "chemistry",
+    "name": "Chemistry"
+  },
+  {
+    "id": "cinema",
+    "name": "Cinema"
+  },
+  {
+    "id": "cinematography",
+    "name": "Cinematography"
+  },
+  {
+    "id": "civil",
+    "name": "Civil"
+  },
+  {
+    "id": "civil_bridges",
+    "name": "Civil Bridges"
+  },
+  {
+    "id": "civil_engineering",
+    "name": "Civil Engineering"
+  },
+  {
+    "id": "clean",
+    "name": "Clean"
+  },
+  {
+    "id": "climatology",
+    "name": "Climatology"
+  },
+  {
+    "id": "clinical",
+    "name": "Clinical"
+  },
+  {
+    "id": "clock",
+    "name": "Clock"
+  },
+  {
+    "id": "clockwork",
+    "name": "Clockwork"
+  },
+  {
+    "id": "cnc",
+    "name": "Cnc"
+  },
+  {
+    "id": "cnn",
+    "name": "Cnn"
+  },
+  {
+    "id": "cochlea",
+    "name": "Cochlea"
+  },
+  {
+    "id": "comm",
+    "name": "Comm"
+  },
+  {
+    "id": "compound",
+    "name": "Compound"
+  },
+  {
+    "id": "computer",
+    "name": "Computer"
+  },
+  {
+    "id": "computer_architecture",
+    "name": "Computer Architecture"
+  },
+  {
+    "id": "computer_engineering",
+    "name": "Computer Engineering"
+  },
+  {
+    "id": "computer_hardware",
+    "name": "Computer Hardware"
+  },
+  {
+    "id": "control_engineering",
+    "name": "Control Engineering"
+  },
+  {
+    "id": "coral",
+    "name": "Coral"
+  },
+  {
+    "id": "cosmochemistry",
+    "name": "Cosmochemistry"
+  },
+  {
+    "id": "covalent",
+    "name": "Covalent"
+  },
+  {
+    "id": "cpu",
+    "name": "Cpu"
+  },
+  {
+    "id": "crispr",
+    "name": "Crispr"
+  },
+  {
+    "id": "cryogenic_supercomputing",
+    "name": "Cryogenic Supercomputing"
+  },
+  {
+    "id": "cryogenics",
+    "name": "Cryogenics"
+  },
+  {
+    "id": "cryptography",
+    "name": "Cryptography"
+  },
+  {
+    "id": "cryptography_engineering",
+    "name": "Cryptography Engineering"
+  },
+  {
+    "id": "cybernetics",
+    "name": "Cybernetics"
+  },
+  {
+    "id": "cytology",
+    "name": "Cytology"
+  },
+  {
+    "id": "da",
+    "name": "Da"
+  },
+  {
+    "id": "da_vinci",
+    "name": "Da Vinci"
+  },
+  {
+    "id": "data",
+    "name": "Data"
+  },
+  {
+    "id": "deep",
+    "name": "Deep"
+  },
+  {
+    "id": "deep_sea",
+    "name": "Deep Sea"
+  },
+  {
+    "id": "deluge",
+    "name": "Deluge"
+  },
+  {
+    "id": "dialysis",
+    "name": "Dialysis"
+  },
+  {
+    "id": "differential",
+    "name": "Differential"
+  },
+  {
+    "id": "digestive",
+    "name": "Digestive"
+  },
+  {
+    "id": "directed_energy",
+    "name": "Directed Energy"
+  },
+  {
+    "id": "distillation",
+    "name": "Distillation"
+  },
+  {
+    "id": "dna",
+    "name": "Dna"
+  },
+  {
+    "id": "double",
+    "name": "Double"
+  },
+  {
+    "id": "earthquake",
+    "name": "Earthquake"
+  },
+  {
+    "id": "ecological",
+    "name": "Ecological"
+  },
+  {
+    "id": "electrical",
+    "name": "Electrical"
+  },
+  {
+    "id": "electrical_engineering",
+    "name": "Electrical Engineering"
+  },
+  {
+    "id": "electromagnetic",
+    "name": "Electromagnetic"
+  },
+  {
+    "id": "electron",
+    "name": "Electron"
+  },
+  {
+    "id": "embedded_systems_engineering",
+    "name": "Embedded Systems Engineering"
+  },
+  {
+    "id": "endoplasmic",
+    "name": "Endoplasmic"
+  },
+  {
+    "id": "energy",
+    "name": "Energy"
+  },
+  {
+    "id": "enigma",
+    "name": "Enigma"
+  },
+  {
+    "id": "environmental",
+    "name": "Environmental"
+  },
+  {
+    "id": "environmental_engineering",
+    "name": "Environmental Engineering"
+  },
+  {
+    "id": "enzyme",
+    "name": "Enzyme"
+  },
+  {
+    "id": "epidemiology",
+    "name": "Epidemiology"
+  },
+  {
+    "id": "epigenetics",
+    "name": "Epigenetics"
+  },
+  {
+    "id": "espionage",
+    "name": "Espionage"
+  },
+  {
+    "id": "exobiology",
+    "name": "Exobiology"
+  },
+  {
+    "id": "exotic_matter",
+    "name": "Exotic Matter"
+  },
+  {
+    "id": "eye",
+    "name": "Eye"
+  },
+  {
+    "id": "file",
+    "name": "File"
+  },
+  {
+    "id": "fire_protection_engineering",
+    "name": "Fire Protection Engineering"
+  },
+  {
+    "id": "flight",
+    "name": "Flight"
+  },
+  {
+    "id": "flow",
+    "name": "Flow"
+  },
+  {
+    "id": "flower",
+    "name": "Flower"
+  },
+  {
+    "id": "fluid",
+    "name": "Fluid"
+  },
+  {
+    "id": "fluid_power",
+    "name": "Fluid Power"
+  },
+  {
+    "id": "fluid_power_engineering",
+    "name": "Fluid Power Engineering"
+  },
+  {
+    "id": "fluids",
+    "name": "Fluids"
+  },
+  {
+    "id": "food_engineering",
+    "name": "Food Engineering"
+  },
+  {
+    "id": "forestry_engineering",
+    "name": "Forestry Engineering"
+  },
+  {
+    "id": "fossilization",
+    "name": "Fossilization"
+  },
+  {
+    "id": "fractional",
+    "name": "Fractional"
+  },
+  {
+    "id": "fusion_energy",
+    "name": "Fusion Energy"
+  },
+  {
+    "id": "galvanic",
+    "name": "Galvanic"
+  },
+  {
+    "id": "gan",
+    "name": "Gan"
+  },
+  {
+    "id": "gas",
+    "name": "Gas"
+  },
+  {
+    "id": "gel",
+    "name": "Gel"
+  },
+  {
+    "id": "genetics",
+    "name": "Genetics"
+  },
+  {
+    "id": "geology",
+    "name": "Geology"
+  },
+  {
+    "id": "geometry",
+    "name": "Geometry"
+  },
+  {
+    "id": "geomorphology",
+    "name": "Geomorphology"
+  },
+  {
+    "id": "geosynchronous",
+    "name": "Geosynchronous"
+  },
+  {
+    "id": "geotechnical_engineering",
+    "name": "Geotechnical Engineering"
+  },
+  {
+    "id": "geothermal_coring",
+    "name": "Geothermal Coring"
+  },
+  {
+    "id": "get",
+    "name": "Get"
+  },
+  {
+    "id": "giant",
+    "name": "Giant"
+  },
+  {
+    "id": "glaciology",
+    "name": "Glaciology"
+  },
+  {
+    "id": "glass",
+    "name": "Glass"
+  },
+  {
+    "id": "glass_engineering",
+    "name": "Glass Engineering"
+  },
+  {
+    "id": "golgi",
+    "name": "Golgi"
+  },
+  {
+    "id": "greenhouse",
+    "name": "Greenhouse"
+  },
+  {
+    "id": "gym",
+    "name": "Gym"
+  },
+  {
+    "id": "gym_equipment",
+    "name": "Gym Equipment"
+  },
+  {
+    "id": "heart",
+    "name": "Heart"
+  },
+  {
+    "id": "heavy",
+    "name": "Heavy"
+  },
+  {
+    "id": "heavy_machinery",
+    "name": "Heavy Machinery"
+  },
+  {
+    "id": "helicopter",
+    "name": "Helicopter"
+  },
+  {
+    "id": "helicopter_tech",
+    "name": "Helicopter Tech"
+  },
+  {
+    "id": "heliophysics",
+    "name": "Heliophysics"
+  },
+  {
+    "id": "high",
+    "name": "High"
+  },
+  {
+    "id": "histology",
+    "name": "Histology"
+  },
+  {
+    "id": "historical",
+    "name": "Historical"
+  },
+  {
+    "id": "historical_timekeeping",
+    "name": "Historical Timekeeping"
+  },
+  {
+    "id": "historical_warfare",
+    "name": "Historical Warfare"
+  },
+  {
+    "id": "historical_weapons",
+    "name": "Historical Weapons"
+  },
+  {
+    "id": "hiv",
+    "name": "Hiv"
+  },
+  {
+    "id": "hohmann",
+    "name": "Hohmann"
+  },
+  {
+    "id": "holographics",
+    "name": "Holographics"
+  },
+  {
+    "id": "honey",
+    "name": "Honey"
+  },
+  {
+    "id": "horology",
+    "name": "Horology"
+  },
+  {
+    "id": "human",
+    "name": "Human"
+  },
+  {
+    "id": "hvac",
+    "name": "Hvac"
+  },
+  {
+    "id": "hvac_engineering",
+    "name": "Hvac Engineering"
+  },
+  {
+    "id": "hvac_systems",
+    "name": "Hvac Systems"
+  },
+  {
+    "id": "hydro",
+    "name": "Hydro"
+  },
+  {
+    "id": "hydroelectric",
+    "name": "Hydroelectric"
+  },
+  {
+    "id": "hydroponic",
+    "name": "Hydroponic"
+  },
+  {
+    "id": "ice",
+    "name": "Ice"
+  },
+  {
+    "id": "immunology",
+    "name": "Immunology"
+  },
+  {
+    "id": "induction",
+    "name": "Induction"
+  },
+  {
+    "id": "industrial_engineering",
+    "name": "Industrial Engineering"
+  },
+  {
+    "id": "inertial",
+    "name": "Inertial"
+  },
+  {
+    "id": "inorganic",
+    "name": "Inorganic"
+  },
+  {
+    "id": "io",
+    "name": "Io"
+  },
+  {
+    "id": "ion",
+    "name": "Ion"
+  },
+  {
+    "id": "ipc",
+    "name": "Ipc"
+  },
+  {
+    "id": "karyotype",
+    "name": "Karyotype"
+  },
+  {
+    "id": "kidney",
+    "name": "Kidney"
+  },
+  {
+    "id": "kitchen",
+    "name": "Kitchen"
+  },
+  {
+    "id": "kitchen_appliances",
+    "name": "Kitchen Appliances"
+  },
+  {
+    "id": "lagrange",
+    "name": "Lagrange"
+  },
+  {
+    "id": "linac",
+    "name": "Linac"
+  },
+  {
+    "id": "lipid",
+    "name": "Lipid"
+  },
+  {
+    "id": "locomotive",
+    "name": "Locomotive"
+  },
+  {
+    "id": "locomotive_tech",
+    "name": "Locomotive Tech"
+  },
+  {
+    "id": "mach",
+    "name": "Mach"
+  },
+  {
+    "id": "macromolecules",
+    "name": "Macromolecules"
+  },
+  {
+    "id": "magnetohydrodynamics",
+    "name": "Magnetohydrodynamics"
+  },
+  {
+    "id": "magnonics",
+    "name": "Magnonics"
+  },
+  {
+    "id": "manual",
+    "name": "Manual"
+  },
+  {
+    "id": "manufacturing_engineering",
+    "name": "Manufacturing Engineering"
+  },
+  {
+    "id": "marine",
+    "name": "Marine"
+  },
+  {
+    "id": "marine_biology",
+    "name": "Marine Biology"
+  },
+  {
+    "id": "marine_engineering",
+    "name": "Marine Engineering"
+  },
+  {
+    "id": "mars",
+    "name": "Mars"
+  },
+  {
+    "id": "mars_rover",
+    "name": "Mars Rover"
+  },
+  {
+    "id": "materials",
+    "name": "Materials"
+  },
+  {
+    "id": "materials_science",
+    "name": "Materials Science"
+  },
+  {
+    "id": "mech",
+    "name": "Mech"
+  },
+  {
+    "id": "mechanical",
+    "name": "Mechanical"
+  },
+  {
+    "id": "mechanical_engineering",
+    "name": "Mechanical Engineering"
+  },
+  {
+    "id": "mechatronics",
+    "name": "Mechatronics"
+  },
+  {
+    "id": "mega_telescopes",
+    "name": "Mega Telescopes"
+  },
+  {
+    "id": "megastructures",
+    "name": "Megastructures"
+  },
+  {
+    "id": "meiosis",
+    "name": "Meiosis"
+  },
+  {
+    "id": "mems",
+    "name": "Mems"
+  },
+  {
+    "id": "metallurgy",
+    "name": "Metallurgy"
+  },
+  {
+    "id": "metamaterials",
+    "name": "Metamaterials"
+  },
+  {
+    "id": "meteorology",
+    "name": "Meteorology"
+  },
+  {
+    "id": "micro",
+    "name": "Micro"
+  },
+  {
+    "id": "microbiology",
+    "name": "Microbiology"
+  },
+  {
+    "id": "microfluidics",
+    "name": "Microfluidics"
+  },
+  {
+    "id": "mining",
+    "name": "Mining"
+  },
+  {
+    "id": "mining_engineering",
+    "name": "Mining Engineering"
+  },
+  {
+    "id": "mining_excavation",
+    "name": "Mining Excavation"
+  },
+  {
+    "id": "misc",
+    "name": "Misc"
+  },
+  {
+    "id": "mitchell",
+    "name": "Mitchell"
+  },
+  {
+    "id": "molecular_biology",
+    "name": "Molecular Biology"
+  },
+  {
+    "id": "mri",
+    "name": "Mri"
+  },
+  {
+    "id": "music",
+    "name": "Music"
+  },
+  {
+    "id": "musical_instruments",
+    "name": "Musical Instruments"
+  },
+  {
+    "id": "nano",
+    "name": "Nano"
+  },
+  {
+    "id": "nano_robotics",
+    "name": "Nano Robotics"
+  },
+  {
+    "id": "nanomedicine",
+    "name": "Nanomedicine"
+  },
+  {
+    "id": "nanorobotics",
+    "name": "Nanorobotics"
+  },
+  {
+    "id": "nanotechnology",
+    "name": "Nanotechnology"
+  },
+  {
+    "id": "nanotechnology_engineering",
+    "name": "Nanotechnology Engineering"
+  },
+  {
+    "id": "network",
+    "name": "Network"
+  },
+  {
+    "id": "network_infrastructure",
+    "name": "Network Infrastructure"
+  },
+  {
+    "id": "networking",
+    "name": "Networking"
+  },
+  {
+    "id": "neural",
+    "name": "Neural"
+  },
+  {
+    "id": "neuromorphic_engineering",
+    "name": "Neuromorphic Engineering"
+  },
+  {
+    "id": "neuroscience",
+    "name": "Neuroscience"
+  },
+  {
+    "id": "neutrino_physics",
+    "name": "Neutrino Physics"
+  },
+  {
+    "id": "neutrino_tech",
+    "name": "Neutrino Tech"
+  },
+  {
+    "id": "next",
+    "name": "Next"
+  },
+  {
+    "id": "nuclear",
+    "name": "Nuclear"
+  },
+  {
+    "id": "nuclear_engineering",
+    "name": "Nuclear Engineering"
+  },
+  {
+    "id": "ocean",
+    "name": "Ocean"
+  },
+  {
+    "id": "ocean_geo_tech",
+    "name": "Ocean Geo Tech"
+  },
+  {
+    "id": "oceanography",
+    "name": "Oceanography"
+  },
+  {
+    "id": "oil",
+    "name": "Oil"
+  },
+  {
+    "id": "oncology",
+    "name": "Oncology"
+  },
+  {
+    "id": "operating",
+    "name": "Operating"
+  },
+  {
+    "id": "operating_systems",
+    "name": "Operating Systems"
+  },
+  {
+    "id": "optical",
+    "name": "Optical"
+  },
+  {
+    "id": "optical_engineering",
+    "name": "Optical Engineering"
+  },
+  {
+    "id": "optics",
+    "name": "Optics"
+  },
+  {
+    "id": "optics_engineering",
+    "name": "Optics Engineering"
+  },
+  {
+    "id": "optogenetics",
+    "name": "Optogenetics"
+  },
+  {
+    "id": "orbital",
+    "name": "Orbital"
+  },
+  {
+    "id": "orbital_mechanics",
+    "name": "Orbital Mechanics"
+  },
+  {
+    "id": "organic_chemistry",
+    "name": "Organic Chemistry"
+  },
+  {
+    "id": "otec",
+    "name": "Otec"
+  },
+  {
+    "id": "packaging_engineering",
+    "name": "Packaging Engineering"
+  },
+  {
+    "id": "paleo",
+    "name": "Paleo"
+  },
+  {
+    "id": "paleoclimatology",
+    "name": "Paleoclimatology"
+  },
+  {
+    "id": "paleontology",
+    "name": "Paleontology"
+  },
+  {
+    "id": "paper_engineering",
+    "name": "Paper Engineering"
+  },
+  {
+    "id": "particle",
+    "name": "Particle"
+  },
+  {
+    "id": "pcr",
+    "name": "Pcr"
+  },
+  {
+    "id": "pedigree",
+    "name": "Pedigree"
+  },
+  {
+    "id": "penning",
+    "name": "Penning"
+  },
+  {
+    "id": "periodic",
+    "name": "Periodic"
+  },
+  {
+    "id": "pet",
+    "name": "Pet"
+  },
+  {
+    "id": "petrochemical",
+    "name": "Petrochemical"
+  },
+  {
+    "id": "petrochemical_engineering",
+    "name": "Petrochemical Engineering"
+  },
+  {
+    "id": "petroleum_engineering",
+    "name": "Petroleum Engineering"
+  },
+  {
+    "id": "pharmacology",
+    "name": "Pharmacology"
+  },
+  {
+    "id": "phononics",
+    "name": "Phononics"
+  },
+  {
+    "id": "photonic",
+    "name": "Photonic"
+  },
+  {
+    "id": "photonics",
+    "name": "Photonics"
+  },
+  {
+    "id": "photonics_engineering",
+    "name": "Photonics Engineering"
+  },
+  {
+    "id": "photosynthesis",
+    "name": "Photosynthesis"
+  },
+  {
+    "id": "physics",
+    "name": "Physics"
+  },
+  {
+    "id": "pitcher",
+    "name": "Pitcher"
+  },
+  {
+    "id": "plasma",
+    "name": "Plasma"
+  },
+  {
+    "id": "plasma_physics",
+    "name": "Plasma Physics"
+  },
+  {
+    "id": "plasma_propulsion",
+    "name": "Plasma Propulsion"
+  },
+  {
+    "id": "plastics_engineering",
+    "name": "Plastics Engineering"
+  },
+  {
+    "id": "plumbing",
+    "name": "Plumbing"
+  },
+  {
+    "id": "plumbing_tech",
+    "name": "Plumbing Tech"
+  },
+  {
+    "id": "power",
+    "name": "Power"
+  },
+  {
+    "id": "power_engineering",
+    "name": "Power Engineering"
+  },
+  {
+    "id": "power_generation",
+    "name": "Power Generation"
+  },
+  {
+    "id": "printing",
+    "name": "Printing"
+  },
+  {
+    "id": "printing_tech",
+    "name": "Printing Tech"
+  },
+  {
+    "id": "printing_technology",
+    "name": "Printing Technology"
+  },
+  {
+    "id": "process",
+    "name": "Process"
+  },
+  {
+    "id": "process_engineering",
+    "name": "Process Engineering"
+  },
+  {
+    "id": "propulsion",
+    "name": "Propulsion"
+  },
+  {
+    "id": "propulsion_systems",
+    "name": "Propulsion Systems"
+  },
+  {
+    "id": "prosthetics",
+    "name": "Prosthetics"
+  },
+  {
+    "id": "protein",
+    "name": "Protein"
+  },
+  {
+    "id": "proton",
+    "name": "Proton"
+  },
+  {
+    "id": "punnett",
+    "name": "Punnett"
+  },
+  {
+    "id": "quality_engineering",
+    "name": "Quality Engineering"
+  },
+  {
+    "id": "quantum",
+    "name": "Quantum"
+  },
+  {
+    "id": "quantum_chromodynamics",
+    "name": "Quantum Chromodynamics"
+  },
+  {
+    "id": "quantum_hardware",
+    "name": "Quantum Hardware"
+  },
+  {
+    "id": "quantum_photonics",
+    "name": "Quantum Photonics"
+  },
+  {
+    "id": "quantum_physics",
+    "name": "Quantum Physics"
+  },
+  {
+    "id": "radar",
+    "name": "Radar"
+  },
+  {
+    "id": "radiochemistry",
+    "name": "Radiochemistry"
+  },
+  {
+    "id": "radiometric",
+    "name": "Radiometric"
+  },
+  {
+    "id": "railway_engineering",
+    "name": "Railway Engineering"
+  },
+  {
+    "id": "red",
+    "name": "Red"
+  },
+  {
+    "id": "reflex",
+    "name": "Reflex"
+  },
+  {
+    "id": "reinforcement",
+    "name": "Reinforcement"
+  },
+  {
+    "id": "reliability_engineering",
+    "name": "Reliability Engineering"
+  },
+  {
+    "id": "renewable_energy",
+    "name": "Renewable Energy"
+  },
+  {
+    "id": "respiratory",
+    "name": "Respiratory"
+  },
+  {
+    "id": "rheology",
+    "name": "Rheology"
+  },
+  {
+    "id": "robot",
+    "name": "Robot"
+  },
+  {
+    "id": "robotics",
+    "name": "Robotics"
+  },
+  {
+    "id": "robotics_engineering",
+    "name": "Robotics Engineering"
+  },
+  {
+    "id": "rsa",
+    "name": "Rsa"
+  },
+  {
+    "id": "schrodinger",
+    "name": "Schrodinger"
+  },
+  {
+    "id": "scramjet",
+    "name": "Scramjet"
+  },
+  {
+    "id": "seafloor",
+    "name": "Seafloor"
+  },
+  {
+    "id": "seed",
+    "name": "Seed"
+  },
+  {
+    "id": "seismology",
+    "name": "Seismology"
+  },
+  {
+    "id": "shake",
+    "name": "Shake"
+  },
+  {
+    "id": "siege",
+    "name": "Siege"
+  },
+  {
+    "id": "siege_engines",
+    "name": "Siege Engines"
+  },
+  {
+    "id": "single",
+    "name": "Single"
+  },
+  {
+    "id": "skeletal",
+    "name": "Skeletal"
+  },
+  {
+    "id": "smart_materials",
+    "name": "Smart Materials"
+  },
+  {
+    "id": "solar",
+    "name": "Solar"
+  },
+  {
+    "id": "sonochemistry",
+    "name": "Sonochemistry"
+  },
+  {
+    "id": "sound_engineering",
+    "name": "Sound Engineering"
+  },
+  {
+    "id": "space",
+    "name": "Space"
+  },
+  {
+    "id": "space_habitats",
+    "name": "Space Habitats"
+  },
+  {
+    "id": "space_station",
+    "name": "Space Station"
+  },
+  {
+    "id": "spacecraft",
+    "name": "Spacecraft"
+  },
+  {
+    "id": "spacecraft_engineering",
+    "name": "Spacecraft Engineering"
+  },
+  {
+    "id": "spatiotemporal",
+    "name": "Spatiotemporal"
+  },
+  {
+    "id": "spider",
+    "name": "Spider"
+  },
+  {
+    "id": "spintronics",
+    "name": "Spintronics"
+  },
+  {
+    "id": "sports_engineering",
+    "name": "Sports Engineering"
+  },
+  {
+    "id": "squid",
+    "name": "Squid"
+  },
+  {
+    "id": "stairwell",
+    "name": "Stairwell"
+  },
+  {
+    "id": "statistics",
+    "name": "Statistics"
+  },
+  {
+    "id": "steadicam",
+    "name": "Steadicam"
+  },
+  {
+    "id": "stellar",
+    "name": "Stellar"
+  },
+  {
+    "id": "stellar_kinematics",
+    "name": "Stellar Kinematics"
+  },
+  {
+    "id": "stern",
+    "name": "Stern"
+  },
+  {
+    "id": "structural_engineering",
+    "name": "Structural Engineering"
+  },
+  {
+    "id": "subatomic",
+    "name": "Subatomic"
+  },
+  {
+    "id": "subatomic_physics",
+    "name": "Subatomic Physics"
+  },
+  {
+    "id": "subglacial_exploration",
+    "name": "Subglacial Exploration"
+  },
+  {
+    "id": "superconducting",
+    "name": "Superconducting"
+  },
+  {
+    "id": "supersonic",
+    "name": "Supersonic"
+  },
+  {
+    "id": "surveying_engineering",
+    "name": "Surveying Engineering"
+  },
+  {
+    "id": "synapse",
+    "name": "Synapse"
+  },
+  {
+    "id": "synthetic",
+    "name": "Synthetic"
+  },
+  {
+    "id": "systems_architecture",
+    "name": "Systems Architecture"
+  },
+  {
+    "id": "systems_engineering",
+    "name": "Systems Engineering"
+  },
+  {
+    "id": "t",
+    "name": "T"
+  },
+  {
+    "id": "tectonic",
+    "name": "Tectonic"
+  },
+  {
+    "id": "tectonophysics",
+    "name": "Tectonophysics"
+  },
+  {
+    "id": "telecommunications",
+    "name": "Telecommunications"
+  },
+  {
+    "id": "telecommunications_engineering",
+    "name": "Telecommunications Engineering"
+  },
+  {
+    "id": "telescope",
+    "name": "Telescope"
+  },
+  {
+    "id": "tempered",
+    "name": "Tempered"
+  },
+  {
+    "id": "terraforming_systems",
+    "name": "Terraforming Systems"
+  },
+  {
+    "id": "textile",
+    "name": "Textile"
+  },
+  {
+    "id": "textile_engineering",
+    "name": "Textile Engineering"
+  },
+  {
+    "id": "textile_tech",
+    "name": "Textile Tech"
+  },
+  {
+    "id": "theme",
+    "name": "Theme"
+  },
+  {
+    "id": "theme_park",
+    "name": "Theme Park"
+  },
+  {
+    "id": "theoretical_physics",
+    "name": "Theoretical Physics"
+  },
+  {
+    "id": "thermal",
+    "name": "Thermal"
+  },
+  {
+    "id": "thermodynamics",
+    "name": "Thermodynamics"
+  },
+  {
+    "id": "thermoelectrics",
+    "name": "Thermoelectrics"
+  },
+  {
+    "id": "tidal",
+    "name": "Tidal"
+  },
+  {
+    "id": "timekeeping",
+    "name": "Timekeeping"
+  },
+  {
+    "id": "tokamak",
+    "name": "Tokamak"
+  },
+  {
+    "id": "topological",
+    "name": "Topological"
+  },
+  {
+    "id": "topology",
+    "name": "Topology"
+  },
+  {
+    "id": "tower",
+    "name": "Tower"
+  },
+  {
+    "id": "traffic_engineering",
+    "name": "Traffic Engineering"
+  },
+  {
+    "id": "transcription",
+    "name": "Transcription"
+  },
+  {
+    "id": "transformer",
+    "name": "Transformer"
+  },
+  {
+    "id": "translation",
+    "name": "Translation"
+  },
+  {
+    "id": "transportation_engineering",
+    "name": "Transportation Engineering"
+  },
+  {
+    "id": "tree",
+    "name": "Tree"
+  },
+  {
+    "id": "triboelectricity",
+    "name": "Triboelectricity"
+  },
+  {
+    "id": "tribology",
+    "name": "Tribology"
+  },
+  {
+    "id": "tsunami",
+    "name": "Tsunami"
+  },
+  {
+    "id": "tuned",
+    "name": "Tuned"
+  },
+  {
+    "id": "vaccine",
+    "name": "Vaccine"
+  },
+  {
+    "id": "venus",
+    "name": "Venus"
+  },
+  {
+    "id": "vertical_farming",
+    "name": "Vertical Farming"
+  },
+  {
+    "id": "vintage",
+    "name": "Vintage"
+  },
+  {
+    "id": "vintage_cameras",
+    "name": "Vintage Cameras"
+  },
+  {
+    "id": "vintage_computing",
+    "name": "Vintage Computing"
+  },
+  {
+    "id": "virology",
+    "name": "Virology"
+  },
+  {
+    "id": "virtual",
+    "name": "Virtual"
+  },
+  {
+    "id": "volcano",
+    "name": "Volcano"
+  },
+  {
+    "id": "volcanology",
+    "name": "Volcanology"
+  },
+  {
+    "id": "wankel",
+    "name": "Wankel"
+  },
+  {
+    "id": "water",
+    "name": "Water"
+  },
+  {
+    "id": "water_resources_engineering",
+    "name": "Water Resources Engineering"
+  },
+  {
+    "id": "wave",
+    "name": "Wave"
+  },
+  {
+    "id": "weaponry",
+    "name": "Weaponry"
+  },
+  {
+    "id": "weather",
+    "name": "Weather"
+  },
+  {
+    "id": "welding_engineering",
+    "name": "Welding Engineering"
+  },
+  {
+    "id": "wind",
+    "name": "Wind"
+  },
+  {
+    "id": "woodworking",
+    "name": "Woodworking"
+  },
+  {
+    "id": "xenodynamics",
+    "name": "Xenodynamics"
+  },
+  {
+    "id": "zoetrope",
+    "name": "Zoetrope"
+  },
+  {
+    "id": "zoology",
+    "name": "Zoology"
+  }
+]

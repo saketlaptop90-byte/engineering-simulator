@@ -1,0 +1,6 @@
+name = "payment-backend"
+main = "src/index.js"
+compatibility_date = "2023-10-16"
+
+[vars]
+# Environment variables can be added here

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - EngiSim 3D</title>
+    <script>
+        // Extract the requested path
+        const path = window.location.pathname;
+        const filename = path.split('/').pop(); // e.g., aerospace_engineering.html
+        
+        if (filename && filename.endsWith('.html') && filename !== 'index.html' && filename !== 'simulator.html') {
+            const category = filename.replace('.html', '');
+            window.location.replace('/simulator.html?category=' + category);
+        } else {
+            window.location.replace('/');
+        }
+    </script>
+</head>
+<body style="background-color: #050b14; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+    <div style="text-align: center;">
+        <h2>Redirecting to the Simulator...</h2>
+        <p>If you are not redirected automatically, <a href="/" style="color: #00c8ff;">click here</a>.</p>
+    </div>
+<script type="module" src="ads.js?v=1783402802.56691"></script>
+</body>
+</html>
+

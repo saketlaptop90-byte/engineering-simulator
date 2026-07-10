@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.firebase/
+.firebaserc
+npm-debug.log
+yarn-error.log
+firebase-debug.log
+*.exe
+*.asar
+node.zip
+engisim-admin/release/
+*.log

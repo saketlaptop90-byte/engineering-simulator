@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Plans - EngiSim</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .navbar {
+      position: fixed; top: 0; width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 24px;
+      background: rgba(12, 18, 37, 0.95);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+      z-index: 1000;
+    }
+    .navbar .logo { font-size: 1.4rem; font-weight: 800; font-family: 'Space Grotesk', sans-serif; }
+    .navbar .logo a { text-decoration: none; color: white; }
+    .navbar .logo span { color: #00c8ff; }
+    .navbar .nav-links { display: flex; align-items: center; gap: 16px; }
+    .navbar .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
+    .navbar .nav-links a:hover { color: #00c8ff; }
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: 1px solid rgba(0, 200, 255, 0.2);
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 8px;
+      line-height: 1;
+    }
+    .hamburger-btn:hover { background: rgba(255,255,255,0.1); }
+    @media (max-width: 768px) {
+      .hamburger-btn { display: block; }
+      .navbar .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(12, 18, 37, 0.98);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 200, 255, 0.2);
+        border-radius: 0 0 12px 12px;
+        padding: 10px;
+        min-width: 200px;
+        gap: 4px;
+        z-index: 200;
+      }
+      .navbar .nav-links.mobile-open { display: flex; }
+      .navbar .nav-links a { padding: 8px 12px; border-radius: 6px; }
+      .navbar .nav-links a:hover { background: rgba(255,255,255,0.05); }
+    }
+    body { background-color: #050b14; color: white; padding-top: 80px; }
+    .container { max-width: 1200px; margin: 40px auto; padding: 2rem; text-align: center; }
+    h1 { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; color: var(--accent); margin-bottom: 1rem; }
+    .subtitle { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 3rem; }
+    
+    .plans-grid { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 4rem; }
+    .plan-card { background: rgba(12,18,37,0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 3rem 2rem; width: 340px; text-align: center; transition: transform 0.3s, border-color 0.3s; position: relative; overflow: hidden; }
+    .plan-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+    .plan-card.pro { border: 2px solid var(--accent); box-shadow: 0 10px 40px rgba(0,229,255,0.15); }
+    .pro-badge { position: absolute; top: 16px; right: -30px; background: var(--accent); color: #000; padding: 5px 40px; transform: rotate(45deg); font-weight: 700; font-size: 0.8rem; }
+    
+    .plan-name { font-size: 1.8rem; font-family: 'Space Grotesk', sans-serif; margin-bottom: 1rem; }
+    .plan-price { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; }
+    .plan-price span { font-size: 1.2rem; color: var(--text-muted); font-weight: 400; }
+    
+    .features-list { list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; }
+    .features-list li { margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
+    .features-list li::before { content: '✓'; color: #10b981; font-weight: bold; }
+    
+    .btn-buy { width: 100%; padding: 1rem; border-radius: 8px; border: none; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+    .btn-buy:hover { opacity: 0.9; }
+    .btn-buy.free { background: rgba(255,255,255,0.1); color: white; }
+    .btn-buy.premium { background: linear-gradient(135deg, #00c8ff, #7c6aff); color: white; }
+    
+    .coupon-section { background: rgba(12,18,37,0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 2rem; max-width: 500px; margin: 0 auto; }
+    .coupon-section h3 { margin-bottom: 1rem; }
+    .coupon-input-group { display: flex; gap: 10px; }
+    .coupon-input-group input { flex: 1; padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; font-size: 1rem; outline: none; }
+    .coupon-input-group button { padding: 0 2rem; border-radius: 8px; background: var(--accent); color: #000; border: none; font-weight: 600; cursor: pointer; }
+    #coupon-msg { margin-top: 10px; font-size: 0.9rem; }
+    
+    #loader { font-size: 1.2rem; color: var(--accent); margin-top: 4rem; }
+  
+    .payment-modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px);
+      display: none; justify-content: center; align-items: center; z-index: 2000;
+    }
+    .payment-modal {
+      background: #0f172a; border: 1px solid rgba(0, 200, 255, 0.3); border-radius: 16px;
+      padding: 2rem; width: 100%; max-width: 450px; position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    .payment-modal h2 { margin-bottom: 1.5rem; color: #00c8ff; }
+    .payment-modal .close-btn {
+      position: absolute; top: 1rem; right: 1.5rem; font-size: 1.5rem; cursor: pointer; color: white; border: none; background: transparent;
+    }
+    .payment-form-group { margin-bottom: 1rem; text-align: left; }
+    .payment-form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: #9ca3af; }
+    .payment-form-group input {
+      width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.3); color: white; font-size: 1rem; outline: none;
+    }
+    .payment-form-row { display: flex; gap: 1rem; }
+    .payment-form-row > div { flex: 1; }
+    .pay-btn {
+      width: 100%; padding: 1rem; border-radius: 8px; background: linear-gradient(135deg, #00c8ff, #7c6aff);
+      color: white; border: none; font-weight: bold; font-size: 1.1rem; cursor: pointer; margin-top: 1rem;
+    }
+    .pay-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  </style>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <meta property="og:type" content="website" />
+    
+    <meta name="google-adsense-account" content="ca-pub-7318663619327346">
+
+  <meta name="description" content="Upgrade to EngiSim Premium for priority AI queues, god-tier models, and massive chat limits.">
+  <link rel="canonical" href="https://engineering-universe.web.app/economy.html">
+  <meta name="robots" content="index, follow">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"><a href="index.html">EngiSim <span>3D</span></a></div>
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">☰</button>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="simulator.html">Simulator</a>
+      <a href="community.html">Community</a>
+      <a href="profile.html">My Profile</a>
+    </div>
+  </nav>
+  <script>
+    document.getElementById('hamburger-btn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('nav-links').classList.toggle('mobile-open');
+    });
+    document.addEventListener('click', function(e) {
+      var nav = document.getElementById('nav-links');
+      if (nav && !e.target.closest('nav')) nav.classList.remove('mobile-open');
+    });
+  </script>
+
+  <div class="container">
+    <h1>Supercharge Your Engineering</h1>
+    <p class="subtitle">Upgrade to unlock Priority AI Queues and massive chat limits.</p>
+    
+    <div id="loader">Syncing plans with server...</div>
+
+    <div class="plans-grid" id="plans-container" style="display: none;">
+      <!-- Populated by JS -->
+    </div>
+
+    <div class="coupon-section" id="coupon-section" style="display: none;">
+      <h3>Have a Promo Code?</h3>
+      <div class="coupon-input-group">
+        <input type="text" id="coupon-input" placeholder="Enter coupon code..." />
+        <button id="btn-apply-coupon">Apply</button>
+      </div>
+      <p id="coupon-msg"></p>
+    </div>
+  </div>
+
+  <script type="module" src="economy.js"></script>
+<script type="module" src="ads.js?v=1783402802.58953"></script>
+
+  <div class="payment-modal-overlay" id="payment-modal-overlay">
+    <div class="payment-modal">
+      <button class="close-btn" id="close-payment-modal">&times;</button>
+      <h2>Secure Checkout</h2>
+      <p id="payment-plan-desc" style="margin-bottom: 1.5rem; color: #ccc;">Complete your purchase.</p>
+      
+      <div class="payment-form-group">
+        <label>Name on Card</label>
+        <input type="text" id="card-name" placeholder="John Doe">
+      </div>
+      <div class="payment-form-group">
+        <label>Email for Invoice</label>
+        <input type="email" id="card-email" placeholder="john@example.com">
+      </div>
+      <div class="payment-form-group">
+        <label>Card Number</label>
+        <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
+      </div>
+      <div class="payment-form-row">
+        <div class="payment-form-group">
+          <label>Expiry</label>
+          <input type="text" id="card-exp" placeholder="MM/YY">
+        </div>
+        <div class="payment-form-group">
+          <label>CVC</label>
+          <input type="text" id="card-cvc" placeholder="123">
+        </div>
+      </div>
+      <button class="pay-btn" id="btn-submit-payment">Pay Securely</button>
+      <p id="payment-msg" style="margin-top: 10px; font-size: 0.9rem; text-align: center;"></p>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</body>
+</html>
+

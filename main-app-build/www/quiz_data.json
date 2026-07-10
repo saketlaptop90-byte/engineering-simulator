@@ -1,0 +1,172 @@
+{
+  "mechanical_engineering": [
+    {
+      "id": "mech_1",
+      "question": "What is the primary function of a gearbox in a mechanical system?",
+      "options": [
+        "To increase engine speed",
+        "To modify torque and speed",
+        "To cool the engine",
+        "To generate electricity"
+      ],
+      "correct": 1,
+      "explanation": "A gearbox uses gear ratios to alter torque and speed delivered to the output shaft."
+    },
+    {
+      "id": "mech_2",
+      "question": "Which of the following materials is most commonly used for high-stress gears?",
+      "options": [
+        "Aluminum",
+        "Brass",
+        "Cast Iron",
+        "Steel alloy"
+      ],
+      "correct": 3,
+      "explanation": "Steel alloys offer the high tensile strength and fatigue resistance required for high-stress gears."
+    },
+    {
+      "id": "mech_3",
+      "question": "What does HVAC stand for?",
+      "options": [
+        "Heating, Ventilation, and Air Conditioning",
+        "High Voltage Alternating Current",
+        "Heavy Vehicle Automotive Control",
+        "Hydraulic Valve Actuation Circuit"
+      ],
+      "correct": 0,
+      "explanation": "HVAC refers to the technology of indoor environmental comfort."
+    }
+  ],
+  "electrical_engineering": [
+    {
+      "id": "elec_1",
+      "question": "What is the unit of electrical resistance?",
+      "options": [
+        "Volts",
+        "Amperes",
+        "Ohms",
+        "Watts"
+      ],
+      "correct": 2,
+      "explanation": "The Ohm is the SI unit of electrical resistance, named after Georg Ohm."
+    },
+    {
+      "id": "elec_2",
+      "question": "Which component stores electrical charge in an electric field?",
+      "options": [
+        "Resistor",
+        "Inductor",
+        "Capacitor",
+        "Diode"
+      ],
+      "correct": 2,
+      "explanation": "A capacitor stores energy in an electrostatic field between two conductive plates."
+    }
+  ],
+  "space_exploration": [
+    {
+      "id": "space_1",
+      "question": "What is escape velocity from Earth?",
+      "options": [
+        "11.2 km/s",
+        "29.8 km/s",
+        "7.9 km/s",
+        "15.5 km/s"
+      ],
+      "correct": 0,
+      "explanation": "Escape velocity from Earth is approximately 11.2 kilometers per second (km/s)."
+    },
+    {
+      "id": "space_2",
+      "question": "What does a reaction wheel do on a spacecraft?",
+      "options": [
+        "Generates power",
+        "Provides thrust",
+        "Controls orientation (attitude)",
+        "Communicates with Earth"
+      ],
+      "correct": 2,
+      "explanation": "Reaction wheels use conservation of angular momentum to rotate the spacecraft without using propellant."
+    }
+  ],
+  "computer_science": [
+    {
+      "id": "cs_1",
+      "question": "What is the time complexity of binary search?",
+      "options": [
+        "O(1)",
+        "O(n)",
+        "O(n log n)",
+        "O(log n)"
+      ],
+      "correct": 3,
+      "explanation": "Binary search halves the search space each step, resulting in O(log n) time complexity."
+    },
+    {
+      "id": "cs_2",
+      "question": "Which protocol is primarily used to browse the World Wide Web?",
+      "options": [
+        "FTP",
+        "SMTP",
+        "HTTP",
+        "SSH"
+      ],
+      "correct": 2,
+      "explanation": "HTTP (HyperText Transfer Protocol) is the foundation of data communication for the WWW."
+    }
+  ],
+  "physics": [
+    {
+      "id": "phys_1",
+      "question": "Which of Newton's laws states that for every action, there is an equal and opposite reaction?",
+      "options": [
+        "First Law",
+        "Second Law",
+        "Third Law",
+        "Law of Universal Gravitation"
+      ],
+      "correct": 2,
+      "explanation": "Newton's Third Law states that all forces between two objects exist in equal magnitude and opposite direction."
+    }
+  ],
+  "biology": [
+    {
+      "id": "bio_1",
+      "question": "What is the powerhouse of the cell?",
+      "options": [
+        "Nucleus",
+        "Ribosome",
+        "Mitochondria",
+        "Endoplasmic Reticulum"
+      ],
+      "correct": 2,
+      "explanation": "Mitochondria generate most of the cell's supply of adenosine triphosphate (ATP), used as a source of chemical energy."
+    }
+  ],
+  "generic": [
+    {
+      "id": "gen_1",
+      "question": "What is the primary purpose of modeling and simulation in this field?",
+      "options": [
+        "To make things look pretty",
+        "To test systems safely and cost-effectively before physical construction",
+        "To increase the cost of development",
+        "To replace human engineers entirely"
+      ],
+      "correct": 1,
+      "explanation": "Simulations allow engineers to test boundary conditions safely and cheaply."
+    },
+    {
+      "id": "gen_2",
+      "question": "Which factor is most critical when validating a 3D model against real-world physics?",
+      "options": [
+        "Color accuracy",
+        "Polygon count",
+        "Material properties and constraints",
+        "The software used to render it"
+      ],
+      "correct": 2,
+      "explanation": "Accurate material properties (like density and elasticity) dictate how the model behaves under physics simulations."
+    }
+  ]
+}

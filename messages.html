@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages - Engineering Universe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #050b14;
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      background: rgba(12, 18, 37, 0.95);
+      border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+    }
+    .logo { font-size: 1.4rem; font-weight: 800; font-family: 'Space Grotesk', sans-serif; }
+    .logo a { text-decoration: none; color: white; }
+    .logo span { color: #00c8ff; }
+    .nav-links { display: flex; align-items: center; gap: 16px; }
+    .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: #00c8ff; }
+    #sign-in-prompt { display: flex; align-items: center; justify-content: center; flex: 1; font-size: 1.5rem; color: rgba(255,255,255,0.5); }
+    .messaging-container { display: flex; flex: 1; overflow: hidden; background: rgba(255,255,255,0.02); }
+    /* Sidebar */
+    .sidebar { width: 320px; min-width: 280px; border-right: 1px solid rgba(0,200,255,0.1); display: flex; flex-direction: column; background: rgba(0,0,0,0.2); }
+    .sidebar-header { padding: 16px; border-bottom: 1px solid rgba(0,200,255,0.1); display: flex; flex-direction: column; gap: 8px; }
+    .sidebar-header h3 { font-size: 1rem; font-weight: 600; color: #00c8ff; }
+    .search-wrapper { position: relative; }
+    .search-wrapper input { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: white; font-size: 0.85rem; outline: none; transition: border-color 0.3s; }
+    .search-wrapper input:focus { border-color: #00c8ff; }
+    .search-suggestions { position: absolute; top: 100%; left: 0; right: 0; background: rgba(12,18,37,0.98); border: 1px solid rgba(0,200,255,0.2); border-radius: 0 0 8px 8px; max-height: 200px; overflow-y: auto; z-index: 100; display: none; }
+    .suggestion-item { padding: 10px 12px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: background 0.2s; font-size: 0.85rem; }
+    .suggestion-item:hover { background: rgba(0,200,255,0.15); }
+    .suggestion-item img { width: 28px; height: 28px; border-radius: 50%; }
+    .suggestion-item .s-name { font-weight: 500; }
+    .suggestion-item .s-id { color: #00c8ff; font-size: 0.75rem; font-family: monospace; }
+    .sidebar-actions { display: flex; gap: 6px; }
+    .sidebar-actions button { flex: 1; padding: 8px; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; font-size: 0.8rem; transition: transform 0.2s, opacity 0.2s; }
+    .sidebar-actions button:hover { transform: scale(1.02); }
+    .btn-chat { background: linear-gradient(135deg, #00c8ff, #7c6aff); color: white; }
+    .btn-group { background: transparent; border: 1px solid #00c8ff !important; color: #00c8ff; }
+    .btn-profile { background: transparent; border: 1px solid rgba(255,255,255,0.2) !important; color: rgba(255,255,255,0.7); font-size: 0.75rem; padding: 6px; }
+    .chat-list { flex: 1; overflow-y: auto; }
+    .chat-item { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); cursor: pointer; transition: background 0.2s; display: flex; align-items: center; gap: 10px; }
+    .chat-item:hover, .chat-item.active { background: rgba(0,200,255,0.08); }
+    .chat-item .chat-icon { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg,#7c6aff,#00c8ff); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+    .chat-item .chat-info { flex: 1; min-width: 0; }
+    .chat-item .chat-name { font-weight: 500; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .chat-item .chat-type { font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+    /* Chat Window */
+    .chat-window { flex: 1; display: flex; flex-direction: column; }
+    .chat-header { padding: 16px 20px; border-bottom: 1px solid rgba(0,200,255,0.1); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.15); }
+    .chat-header-left { font-size: 1.1rem; font-weight: 600; }
+    .btn-members { background: transparent; border: 1px solid rgba(0,200,255,0.3); color: #00c8ff; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; display: none; }
+    .messages-area { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+    .message { max-width: 65%; padding: 10px 14px; border-radius: 14px; word-wrap: break-word; font-size: 0.9rem; line-height: 1.4; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .message.sent { align-self: flex-end; background: linear-gradient(135deg, #7c6aff, #5b4fcf); border-bottom-right-radius: 4px; }
+    .message.received { align-self: flex-start; background: rgba(255,255,255,0.08); border-bottom-left-radius: 4px; }
+    .message-input { padding: 16px 20px; border-top: 1px solid rgba(0,200,255,0.1); display: flex; gap: 10px; background: rgba(0,0,0,0.1); }
+    .message-input input { flex: 1; padding: 12px 16px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: white; font-size: 0.9rem; outline: none; }
+    .message-input input:focus { border-color: #00c8ff; }
+    .message-input button { background: linear-gradient(135deg, #00c8ff, #7c6aff); border: none; padding: 12px 24px; border-radius: 24px; color: white; font-weight: 600; cursor: pointer; transition: transform 0.2s; }
+    .message-input button:hover { transform: scale(1.05); }
+    /* Profile Panel */
+    .profile-panel { display: none; position: fixed; top: 0; right: 0; width: 340px; height: 100%; background: rgba(12,18,37,0.98); border-left: 1px solid rgba(0,200,255,0.15); z-index: 500; padding: 24px; overflow-y: auto; animation: slideIn 0.3s ease; backdrop-filter: blur(20px); }
+    @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+    .profile-panel .close-btn { position: absolute; top: 12px; right: 16px; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+    .profile-panel .avatar { width: 80px; height: 80px; border-radius: 50%; margin: 20px auto 16px; display: block; border: 2px solid #00c8ff; }
+    .profile-panel h3 { text-align: center; font-size: 1.1rem; margin-bottom: 4px; }
+    .profile-panel .p-email { text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+    .profile-panel .p-id { text-align: center; font-family: monospace; color: #00c8ff; font-size: 1rem; background: rgba(0,200,255,0.08); padding: 10px; border-radius: 8px; margin-bottom: 16px; }
+    .profile-panel .change-id { display: flex; gap: 6px; margin-bottom: 12px; }
+    .profile-panel .change-id input { flex: 1; padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: white; font-size: 0.85rem; font-family: monospace; }
+    .profile-panel .change-id button { padding: 8px 14px; border-radius: 6px; background: linear-gradient(135deg, #00c8ff, #7c6aff); border: none; color: white; font-weight: 600; cursor: pointer; font-size: 0.8rem; }
+    .profile-panel .id-note { font-size: 0.7rem; color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 16px; }
+    .profile-panel .id-status { font-size: 0.8rem; text-align: center; margin-bottom: 8px; min-height: 20px; }
+    /* Members Panel */
+    .members-panel { display: none; position: fixed; top: 0; right: 0; width: 300px; height: 100%; background: rgba(12,18,37,0.98); border-left: 1px solid rgba(0,200,255,0.15); z-index: 500; padding: 24px; overflow-y: auto; animation: slideIn 0.3s ease; backdrop-filter: blur(20px); }
+    .members-panel .close-btn { position: absolute; top: 12px; right: 16px; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+    .members-panel h3 { margin-bottom: 16px; font-size: 1rem; color: #00c8ff; }
+    .member-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .member-item img { width: 32px; height: 32px; border-radius: 50%; }
+    .member-item .m-name { font-size: 0.9rem; }
+    .member-item .m-id { font-size: 0.75rem; color: #00c8ff; font-family: monospace; }
+    /* Mobile */
+    @media (max-width: 768px) {
+      .sidebar { width: 100%; position: absolute; z-index: 10; height: calc(100vh - 52px); }
+      .sidebar.hidden-mobile { display: none; }
+      .chat-window { width: 100%; }
+      .chat-header .btn-back { display: inline-block !important; }
+      .profile-panel, .members-panel { width: 100%; }
+    }
+    .btn-back { display: none; background: none; border: none; color: #00c8ff; font-size: 1.2rem; cursor: pointer; margin-right: 10px; }
+  </style>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Engineering Universe 3D Simulator. Explore, analyze, and learn about engineering mechanisms in interactive 3D.">
+    <meta name="keywords" content="Engineering, Simulator, 3D Models, Mechanical Engineering, Education, Civil Engineering">
+    <meta name="author" content="EngiSim Team">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Engineering Universe 3D">
+    <meta property="og:description" content="Explore, analyze, and learn about engineering mechanisms in interactive 3D.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://engineering-universe-72120.web.app/">
+    
+    <!-- Bing/Google Verification (Optional later, generic for now) -->
+    <meta name="robots" content="index, follow">
+
+    
+    <meta name="google-adsense-account" content="ca-pub-7318663619327346">
+</head>
+<body>
+  <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Engineering Universe Messaging</h1>
+
+  <nav>
+    <div class="logo"><a href="index.html">EngiSim <span>3D</span></a></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="simulator.html">Simulator</a>
+      <a href="community.html">Community</a>
+      <a href="messages.html" id="nav-messages" class="active" style="display:none;">Messages</a>
+      <span id="nav-unauth" style="position: relative;">
+        <button id="nav-signin-main" onclick="var d=document.getElementById('signin-dropdown'); if(d){ d.style.display=d.style.display==='none'?'flex':'none'; } event.stopPropagation(); return false;" style="background: linear-gradient(135deg, #00c8ff, #7c6aff); color: white; padding: 8px 18px; border-radius: 6px; font-weight: bold; border: none; cursor: pointer;">Sign In</button>
+        <div id="signin-dropdown" style="display: none; z-index: 2000; position: absolute; top: 100%; right: 0; margin-top: 10px; background: rgba(12,18,37,0.95); border: 1px solid rgba(0,200,255,0.2); border-radius: 8px; padding: 10px; flex-direction: column; gap: 10px; min-width: 150px; backdrop-filter: blur(10px);">
+           <button id="nav-signin-google" style="background:#fff; color:black; padding:8px 16px; border-radius:4px; font-weight:bold; border:none; cursor:pointer; width:100%;">Google</button>
+           <button id="nav-signin-bing" style="background:#0078d4; color:white; padding:8px 16px; border-radius:4px; font-weight:bold; border:none; cursor:pointer; width:100%;">Microsoft</button>
+        </div>
+      </span>
+      <span id="nav-auth" class="user-profile" style="display: none; align-items: center; gap: 10px;">
+        <img id="nav-user-pic" src="" alt="User" style="width:32px; height:32px; border-radius:50%;">
+        <span id="nav-user-name" style="color:white; font-size:0.85rem;">User</span>
+        <button id="nav-signout" style="background:transparent; border:1px solid #ef4444; color:#ef4444; padding:4px 10px; border-radius:4px; cursor:pointer; font-size:0.8rem;">Logout</button>
+      </span>
+    </div>
+  </nav>
+
+  <div id="sign-in-prompt"><p>Please Sign In to access Messages</p></div>
+
+  <div id="messaging-container" class="messaging-container" style="display: none;">
+    <div class="sidebar" id="msg-sidebar">
+      <div class="sidebar-header">
+        <h3>💬 Chats</h3>
+        <div class="search-wrapper">
+          <input type="text" id="search-user-input" placeholder="Search users by ID..." autocomplete="off">
+          <div class="search-suggestions" id="search-suggestions"></div>
+        </div>
+        <div class="sidebar-actions">
+          <button class="btn-chat" id="btn-search-user">Start Chat</button>
+          <button class="btn-group" id="btn-create-group">+ Group</button>
+        </div>
+        <button class="btn-profile" id="btn-open-profile">👤 My Profile</button>
+      </div>
+      <div class="chat-list" id="chat-list"></div>
+    </div>
+
+    <div class="chat-window" id="chat-window" style="display: none;">
+      <div class="chat-header">
+        <div class="chat-header-left">
+          <button class="btn-back" id="btn-back-to-list">←</button>
+          <span id="chat-header-title">Select a chat</span>
+        </div>
+        <button class="btn-members" id="btn-show-members">👥 Members</button>
+      </div>
+      <div class="messages-area" id="messages-area"></div>
+      <div class="message-input">
+        <input type="text" id="message-input-box" placeholder="Type a message (max 500 chars)..." maxlength="500">
+        <button id="btn-send-message">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Panel -->
+  <div class="profile-panel" id="profile-panel">
+    <button class="close-btn" id="btn-close-profile">✕</button>
+    <img class="avatar" id="profile-avatar" src="https://via.placeholder.com/80" alt="Avatar">
+    <h3 id="profile-name">User</h3>
+    <div class="p-email" id="profile-email">user@email.com</div>
+    <div class="p-id" id="profile-unique-id">@user_1234</div>
+    <div class="id-status" id="id-status"></div>
+    <div class="change-id">
+      <input type="text" id="new-id-input" placeholder="@your_new_id" maxlength="30">
+      <button id="btn-change-id">Claim</button>
+    </div>
+    <div class="id-note">Choose a unique ID (3-30 chars, letters, numbers, _ only). First come, first served — like Telegram!</div>
+  </div>
+
+  <!-- Members Panel -->
+  <div class="members-panel" id="members-panel">
+    <button class="close-btn" id="btn-close-members">✕</button>
+    <h3>👥 Group Members</h3>
+    <div id="members-list"></div>
+  </div>
+
+  <script type="module" src="firebase.js"></script>
+  <script type="module">
+    import { initAuth } from './auth.js';
+    import { initMessaging } from './messaging.js';
+    document.addEventListener("DOMContentLoaded", () => {
+      initAuth();
+      initMessaging();
+    });
+  </script>
+<script type="module" src="ads.js.59627"></script>
+</body>
+</html>
